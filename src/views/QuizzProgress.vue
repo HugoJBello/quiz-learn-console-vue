@@ -87,6 +87,15 @@
             </v-timeline-item>
           </v-timeline>
         </v-card-text>
+        <v-card-actions>
+          <v-btn
+              text
+              color="teal accent-4"
+              v-on:click="startQuizz()"
+          >
+            Go for it
+          </v-btn>
+        </v-card-actions>
       </v-card>
     </v-row>
   </v-container>
@@ -103,6 +112,10 @@ import QuizzCard from "@/components/QuizzCard.vue";
 export default class QuizzProgress extends Vue {
   public quizz: Quizz | undefined
 
+  public startQuizz = () => {
+    this.$router.push('quizz-start')
+
+  }
   async created() {
     this.quizz = this.$store.state.selectedQuizz
   }
