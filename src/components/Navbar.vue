@@ -30,7 +30,7 @@
         clipped-left
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Console</v-toolbar-title>
+      <v-toolbar-title>Quizzes</v-toolbar-title>
     </v-app-bar>
   </div>
 </template>

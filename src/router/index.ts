@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
-import Console from '../views/Console.vue'
+import QuizzesMenu from '../views/QuizzesMenu.vue'
+import QuizzProgress from "@/views/QuizzProgress.vue";
 
 Vue.use(VueRouter)
 
@@ -9,7 +10,12 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'Console',
-    component: Console
+    component: QuizzesMenu
+  },
+  {
+    path: '/quizz-progress',
+    name: 'QuizzProgress',
+    component: QuizzProgress
   },
   {
     path: '/about',
