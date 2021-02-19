@@ -103,7 +103,7 @@
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
-import {Quizz} from "../../models/Quizz";
+import {Quizz} from "../models/Quizz";
 import QuizzCard from "@/components/QuizzCard.vue";
 
 @Component({

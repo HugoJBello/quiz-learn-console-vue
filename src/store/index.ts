@@ -1,17 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {State} from "../../models/State";
-import {Quizz} from "../../models/Quizz";
+import {State} from "../models/State";
+import {setSelectedQuizMutation} from "@/store/mutations/selectedQuiz.mutations";
+import {setSelectedQuizzAction} from "@/store/actions/selectedQuiz.actions";
 
 Vue.use(Vuex)
 
-const setSelectedQuizzMutation = (state: State, selectedQuizz: Quizz) => {
-    state.selectedQuizz = selectedQuizz
-}
-
-const setSelectedQuizzAction = ({commit}: any, selectedQuizz: Quizz) => {
-    commit('setSelectedQuizzMutation',selectedQuizz)
-}
 export default new Vuex.Store({
     state: {
         selectedQuizz: null,
@@ -19,7 +13,7 @@ export default new Vuex.Store({
         status: null
     } as State,
     mutations: {
-        setSelectedQuizzMutation,
+        setSelectedQuizzMutation: setSelectedQuizMutation,
     },
     actions: {
         setSelectedQuizzAction,

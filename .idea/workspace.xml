@@ -20,12 +20,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d5ff4e5-4e03-46ac-97bf-110324ebf1bb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/services/quizesService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/actions/selectedQuiz.actions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/mutations/selectedQuiz.mutations.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Image.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Image.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Quizz.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Quizz.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/State.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/State.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/QuizzCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuizzCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/QuizzProgress.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/QuizzProgress.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/QuizzesMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/QuizzesMenu.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -38,7 +55,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/store/actions" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -50,7 +67,11 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/store/actions" />
       <recent name="$PROJECT_DIR$/src/views" />
       <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$" />
@@ -67,7 +88,10 @@
       <updated>1607942759264</updated>
       <workItem from="1607942760331" duration="1399000" />
       <workItem from="1607944633342" duration="3143000" />
-      <workItem from="1610220760622" duration="8646000" />
+      <workItem from="1610220760622" duration="8873000" />
+      <workItem from="1610656782400" duration="593000" />
+      <workItem from="1611771190556" duration="151000" />
+      <workItem from="1613726070107" duration="1848000" />
     </task>
     <servers />
   </component>
@@ -87,6 +111,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="550" y="304" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1613735403090">
+      <screen x="0" y="23" width="1680" height="954" />
+    </state>
+    <state x="550" y="304" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.954@0.23.1680.954" timestamp="1613735403090" />
     <state x="581" y="249" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607945848236">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>

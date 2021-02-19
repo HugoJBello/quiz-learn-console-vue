@@ -14,8 +14,9 @@
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
 import {quizzesCollection, results, storage} from '../firebase'
-import {Quizz} from "../../models/Quizz";
+import {Quizz} from "../models/Quizz";
 import QuizzCard from "@/components/QuizzCard.vue";
+import {getQuizzesAvailable} from "@/services/quizesService";
 
 @Component({
   components: {QuizzCard},
@@ -26,19 +27,13 @@ export default class QuizzesMenu extends Vue {
 
 
   public async getQuizzes() {
-    await this.getQuizzesAvailable()
+    await this.getQuizzesAvailableForUser()
     this.$forceUpdate();
 
   }
 
-  public async getQuizzesAvailable() {
-    //const result  = await quizzesCollection.limit(10).where("public", "==", true).orderBy("date", "desc").get()
-    const result = await quizzesCollection.limit(10).where("public", "==", true).get()
-    console.log(result.docs)
-    const quizzes = []
-    for (const doc of result.docs) {
-      quizzes.push(doc.data() as Quizz)
-    }
+  public async getQuizzesAvailableForUser() {
+    const quizzes = await getQuizzesAvailable(10,0)
     this.quizzes = quizzes
     console.log(quizzes)
     //this.$store.dispatch('setSelectedQuizzAction', "a")
