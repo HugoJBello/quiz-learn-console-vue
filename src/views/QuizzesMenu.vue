@@ -14,7 +14,7 @@
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
 import {quizzesCollection, results, storage} from '../firebase'
-import {Quizz} from "../models/Quizz";
+import {Quiz} from "../models/Quiz";
 import QuizzCard from "@/components/QuizzCard.vue";
 import {getQuizzesAvailable} from "@/services/quizesService";
 
@@ -22,7 +22,7 @@ import {getQuizzesAvailable} from "@/services/quizesService";
   components: {QuizzCard},
 })
 export default class QuizzesMenu extends Vue {
-  public quizzes: Quizz[] = []
+  public quizzes: Quiz[] = []
   public dialog = false
 
 

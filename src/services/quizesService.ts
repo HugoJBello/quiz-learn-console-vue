@@ -1,5 +1,5 @@
 import {quizzesCollection} from "@/firebase";
-import {Quizz} from "../models/Quizz";
+import {Quiz} from "../models/Quiz";
 
 export const getQuizzesAvailable = async (limit: number, skip: number) => {
     //const result  = await quizzesCollection.limit(10).where("public", "==", true).orderBy("date", "desc").get()
@@ -7,7 +7,7 @@ export const getQuizzesAvailable = async (limit: number, skip: number) => {
     const quizzes = []
 
     for (const doc of result.docs) {
-        quizzes.push(doc.data() as Quizz)
+        quizzes.push(doc.data() as Quiz)
     }
     console.log(quizzes)
     return quizzes

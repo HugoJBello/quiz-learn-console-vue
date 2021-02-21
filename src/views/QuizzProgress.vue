@@ -103,14 +103,14 @@
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
-import {Quizz} from "../models/Quizz";
+import {Quiz} from "../models/Quiz";
 import QuizzCard from "@/components/QuizzCard.vue";
 
 @Component({
   components: {QuizzCard},
 })
 export default class QuizzProgress extends Vue {
-  public quizz: Quizz | undefined
+  public quizz: Quiz | undefined
 
   public startQuizz = () => {
     this.$router.push('quizz-start')

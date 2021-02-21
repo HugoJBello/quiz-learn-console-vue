@@ -10,7 +10,8 @@ export default new Vuex.Store({
     state: {
         selectedQuizz: null,
         answers: [],
-        status: null
+        status: null,
+        availableQuizesForUser: null
     } as State,
     mutations: {
         setSelectedQuizzMutation: setSelectedQuizMutation,

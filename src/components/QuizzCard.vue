@@ -27,16 +27,16 @@
 
 <script lang="ts">
 import {Component, Prop, Vue} from 'vue-property-decorator';
-import {Quizz} from "../models/Quizz";
+import {Quiz} from "../models/Quiz";
 
 @Component({
   components: {},
 })
 export default class QuizzCard extends Vue {
   @Prop({required: false})
-  public quizz: Quizz | undefined
+  public quizz: Quiz | undefined
 
-  public select = (quizz: Quizz) => {
+  public select = (quizz: Quiz) => {
     this.$store.dispatch('setSelectedQuizzAction', quizz)
     this.$router.push('quizz-progress')
 

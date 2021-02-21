@@ -1,6 +1,6 @@
 import {State} from "../../models/State";
-import {Quizz} from "../../models/Quizz";
+import {Quiz} from "../../models/Quiz";
 
-export const setSelectedQuizMutation = (state: State, selectedQuiz: Quizz) => {
+export const setSelectedQuizMutation = (state: State, selectedQuiz: Quiz) => {
     state.selectedQuizz = selectedQuiz
 }

@@ -1,7 +1,8 @@
-import {Quizz} from "./Quizz";
+import {Quiz} from "./Quiz";
 
 export interface State {
-    selectedQuizz: Quizz | null,
+    selectedQuizz: Quiz | null,
+    availableQuizesForUser: Quiz[] | null,
     answers: Answer[],
     status: string | null
 }
