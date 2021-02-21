@@ -32,12 +32,12 @@ import {Quiz} from "../models/Quiz";
 @Component({
   components: {},
 })
-export default class QuizzCard extends Vue {
+export default class QuizCard extends Vue {
   @Prop({required: false})
   public quizz: Quiz | undefined
 
   public select = (quizz: Quiz) => {
-    this.$store.dispatch('setSelectedQuizzAction', quizz)
+    this.$store.dispatch('setSelectedQuizAction', quizz)
     this.$router.push('quizz-progress')
 
   }

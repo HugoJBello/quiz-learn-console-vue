@@ -2,8 +2,8 @@
   <div>
     <v-container fluid>
       <div id="example-1">
-        <div v-for="item in quizzes" :key="item.id">
-          <QuizzCard :quizz="item"></QuizzCard>
+        <div v-for="item in quizes" :key="item.id">
+          <QuizCard :quizz="item"></QuizCard>
         </div>
       </div>
     </v-container>
@@ -15,33 +15,22 @@
 import {Component, Vue} from 'vue-property-decorator';
 import {quizzesCollection, results, storage} from '../firebase'
 import {Quiz} from "../models/Quiz";
-import QuizzCard from "@/components/QuizzCard.vue";
+import QuizCard from "@/components/QuizzCard.vue";
 import {getQuizzesAvailable} from "@/services/quizesService";
 
 @Component({
-  components: {QuizzCard},
+  components: {QuizCard: QuizCard},
 })
 export default class QuizzesMenu extends Vue {
-  public quizzes: Quiz[] = []
   public dialog = false
 
-
-  public async getQuizzes() {
-    await this.getQuizzesAvailableForUser()
-    this.$forceUpdate();
-
+  get quizes() {
+    return this.$store.state.availableQuizesForUser
   }
-
-  public async getQuizzesAvailableForUser() {
-    const quizzes = await getQuizzesAvailable(10,0)
-    this.quizzes = quizzes
-    console.log(quizzes)
-    //this.$store.dispatch('setSelectedQuizzAction', "a")
-  }
-
 
   async created() {
-    await this.getQuizzes()
+    await this.$store.dispatch('setAvailableQuizesForUser')
+    console.log("--------__", this.quizes)
   }
 
 }

@@ -20,12 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d5ff4e5-4e03-46ac-97bf-110324ebf1bb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/store/actions/availableQuizesForUser.actions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/mutations/availableQuizesForUser.mutations.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Quizz.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Quizz.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/QuizzCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuizzCard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/State.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/State.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/quizesService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/quizesService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/actions/selectedQuiz.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/selectedQuiz.actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/mutations/selectedQuiz.mutations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/mutations/selectedQuiz.mutations.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/QuizzProgress.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/QuizzProgress.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/QuizzesMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/QuizzesMenu.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +55,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../quizz-learn-react-native" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/store/mutations" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -62,14 +67,14 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/store/mutations" />
       <recent name="$PROJECT_DIR$/src/store/actions" />
       <recent name="$PROJECT_DIR$/src/views" />
       <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
@@ -87,7 +92,7 @@
       <workItem from="1610656782400" duration="593000" />
       <workItem from="1611771190556" duration="151000" />
       <workItem from="1613726070107" duration="1848000" />
-      <workItem from="1613911113524" duration="428000" />
+      <workItem from="1613911113524" duration="3624000" />
     </task>
     <servers />
   </component>

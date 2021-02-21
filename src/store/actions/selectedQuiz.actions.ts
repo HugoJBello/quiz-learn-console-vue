@@ -1,5 +1,6 @@
 import {Quiz} from "../../models/Quiz";
+import {getQuizzesAvailable} from "@/services/quizesService";
 
-export const setSelectedQuizzAction = ({commit}: any, selectedQuizz: Quiz) => {
-    commit('setSelectedQuizzMutation',selectedQuizz)
+export const setSelectedQuizAction = ({commit}: any, selectedQuiz: Quiz) => {
+    commit('setSelectedQuizzMutation',selectedQuiz)
 }

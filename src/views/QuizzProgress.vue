@@ -104,10 +104,10 @@
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
 import {Quiz} from "../models/Quiz";
-import QuizzCard from "@/components/QuizzCard.vue";
+import QuizCard from "@/components/QuizzCard.vue";
 
 @Component({
-  components: {QuizzCard},
+  components: {QuizCard: QuizCard},
 })
 export default class QuizzProgress extends Vue {
   public quizz: Quiz | undefined
@@ -117,7 +117,7 @@ export default class QuizzProgress extends Vue {
 
   }
   async created() {
-    this.quizz = this.$store.state.selectedQuizz
+    this.quizz = this.$store.state.selectedQuiz
   }
 }
 </script>

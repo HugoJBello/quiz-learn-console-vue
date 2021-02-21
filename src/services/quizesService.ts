@@ -1,7 +1,7 @@
 import {quizzesCollection} from "@/firebase";
 import {Quiz} from "../models/Quiz";
 
-export const getQuizzesAvailable = async (limit: number, skip: number) => {
+export const getQuizzesAvailable = async (limit: number, skip: number): Promise<Quiz[]> => {
     //const result  = await quizzesCollection.limit(10).where("public", "==", true).orderBy("date", "desc").get()
     const result = await quizzesCollection.limit(limit).where("public", "==", true).get()
     const quizzes = []
