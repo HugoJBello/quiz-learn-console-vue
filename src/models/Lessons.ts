@@ -13,5 +13,6 @@ export interface Lesson {
     finalQuiz: Quiz,
     quizzes: Quiz[],
     public: boolean,
+    courseId: string,
     date: Date
 }

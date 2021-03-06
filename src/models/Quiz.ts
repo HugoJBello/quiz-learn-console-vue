@@ -9,7 +9,7 @@ export interface Quiz {
     difficultyPercent: number,
     questions: Question[],
     public: boolean,
-    partOfCourseId: string,
+    courseId: string,
     date: Date
 }
 
