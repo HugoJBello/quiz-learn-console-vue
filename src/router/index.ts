@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../views/Home.vue'
 import QuizzesMenu from '../views/QuizzesMenu.vue'
 import QuizzProgress from "@/views/QuizzProgress.vue";
+import Register from "@/views/Register.vue";
+import Login from "@/views/Login.vue";
+import LessonConsole from "@/views/LessonConsole.vue";
 
 Vue.use(VueRouter)
 
@@ -16,6 +18,21 @@ const routes: Array<RouteConfig> = [
     path: '/quizz-progress',
     name: 'QuizzProgress',
     component: QuizzProgress
+  },
+  {
+    path: '/lesson_console',
+    name: 'LessonConsole',
+    component: LessonConsole
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   },
   {
     path: '/about',

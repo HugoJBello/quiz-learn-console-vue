@@ -6,7 +6,7 @@
         clipped
     >
       <v-list dense>
-        <v-list-item link>
+        <v-list-item link to="/">
           <v-list-item-action>
             <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-action>
@@ -14,6 +14,25 @@
             <v-list-item-title>Dashboard</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+
+        <v-list-item link to="/lesson_console">
+          <v-list-item-action>
+            <v-icon>mdi-notebook-outline</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Lesson Console</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item v-if="!user" link to="/login">
+          <v-list-item-action>
+            <v-icon>mdi-account</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>login</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
         <v-list-item link>
           <v-list-item-action>
             <v-icon>mdi-cog</v-icon>
@@ -31,24 +50,42 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Quizzes</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn v-if="user && user.email" >
+        <v-chip>
+          {{ user.email }}
+        </v-chip>
+      </v-btn>
     </v-app-bar>
   </div>
 </template>
 
-<script>
-export default {
-  name: "Navbar",
 
-  data: () => ({
-    drawer: null,
-  }),
+
+<script lang="ts">
+import {Component, Vue} from 'vue-property-decorator';
+
+@Component({
+})
+export default class Navbar extends Vue {
+  public drawer = null
+
+  get user() {
+    return this.$store.state.user
+  }
 
   created() {
     this.$vuetify.theme.dark = true
-  },
+  }
+
 }
 </script>
 
-<style scoped>
 
+<style scoped>
+ .userChip {
+   padding-right:120px
+ }
 </style>

@@ -2,6 +2,7 @@ import * as firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 import 'firebase/storage'
+import store from "./store"
 
 // firebase init - add your own config here
 const firebaseConfig = {
@@ -14,6 +15,11 @@ const firebaseConfig = {
     measurementId: "G-1RCH7308W1"
 };
 firebase.initializeApp(firebaseConfig)
+
+firebase.auth().onAuthStateChanged(user => {
+    console.log("user -> ", user)
+    store.dispatch("setUser", user);
+});
 
 // utils
 const db = firebase.firestore()
