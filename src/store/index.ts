@@ -7,6 +7,8 @@ import {setAvailableQuizesForUser} from "@/store/actions/availableQuizesForUser.
 import {setAvailableQuizesForUserMutation} from "@/store/mutations/availableQuizesForUser.mutations";
 import {setUserMutation} from "@/store/mutations/user.mutations";
 import {setUser} from "@/store/actions/user.actions";
+import {setLessonsMutation} from "@/store/mutations/lesson.mutations";
+import {setLessons} from "@/store/actions/lesson.actions";
 
 Vue.use(Vuex)
 
@@ -22,11 +24,13 @@ export default new Vuex.Store({
     mutations: {
         setSelectedQuizzMutation: setSelectedQuizMutation,
         setUserMutation: setUserMutation,
+        setLessonsMutation: setLessonsMutation,
         setAvailableQuizesForUserMutation: setAvailableQuizesForUserMutation,
     },
     actions: {
         setSelectedQuizAction: setSelectedQuizAction,
         setUser: setUser,
+        setLessons: setLessons,
         setAvailableQuizesForUser: setAvailableQuizesForUser,
     },
     modules: {}

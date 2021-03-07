@@ -4,6 +4,8 @@ export interface Lesson {
     id: string,
     type: string,
     title: string,
+    createdAt: Date,
+    updatedAt: Date,
     description: string,
     frontImage: string,
     subtitle: string,

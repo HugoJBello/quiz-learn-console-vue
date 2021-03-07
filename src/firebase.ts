@@ -29,6 +29,8 @@ const storage = firebase.storage()
 // collection references
 const results = db.collection('results')
 const quizzesCollection = db.collection('quizzes')
+const coursesCollection = db.collection('courses')
+const lessonsCollection = db.collection('lessons')
 
 // export utils/refs
 export {
@@ -36,5 +38,7 @@ export {
     auth,
     results,
     quizzesCollection,
+    coursesCollection,
+    lessonsCollection,
     storage
 }

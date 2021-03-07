@@ -5,6 +5,7 @@ import QuizzProgress from "@/views/QuizzProgress.vue";
 import Register from "@/views/Register.vue";
 import Login from "@/views/Login.vue";
 import LessonConsole from "@/views/LessonConsole.vue";
+import LessonEdit from "@/views/LessonEdit.vue";
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,11 @@ const routes: Array<RouteConfig> = [
     path: '/lesson_console',
     name: 'LessonConsole',
     component: LessonConsole
+  },
+  {
+    path: '/lesson/edit/:id',
+    name: 'LessonEdit',
+    component: LessonEdit
   },
   {
     path: '/register',

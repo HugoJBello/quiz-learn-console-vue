@@ -1,17 +1,16 @@
 <template>
   <div>
-
+    <LessonsTable v-if="lessons" :lessons="lessons"></LessonsTable>
   </div>
 
 </template>
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
-import QuizCard from "@/components/QuizzCard.vue";
-import {getQuizzesAvailable} from "@/services/quizesService";
+import LessonsTable from "@/components/LessonsTable.vue";
 
 @Component({
-  components: {QuizCard: QuizCard},
+  components: {LessonsTable: LessonsTable},
 })
 export default class LessonConsole extends Vue {
   public dialog = false
@@ -21,8 +20,8 @@ export default class LessonConsole extends Vue {
   }
 
   async created() {
-    //await this.$store.dispatch('setLessonsForUser')
-    //console.log("--------__", this.lessons)
+    await this.$store.dispatch('setLessons')
+    console.log("--------***", this.lessons)
   }
 
 }

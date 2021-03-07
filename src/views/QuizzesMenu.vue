@@ -16,7 +16,7 @@ import {Component, Vue} from 'vue-property-decorator';
 import {quizzesCollection, results, storage} from '../firebase'
 import {Quiz} from "../models/Quiz";
 import QuizCard from "@/components/QuizzCard.vue";
-import {getQuizzesAvailable} from "@/services/quizesService";
+import {getQuizzesAvailable} from "@/services/dbService";
 
 @Component({
   components: {QuizCard: QuizCard},

@@ -4,7 +4,7 @@
       max-width="344"
   >
     <v-card-text>
-      <div>Quizz</div>
+      <div>{{$t('Quiz')}}</div>
       <p class="display-1 text--primary">
         {{ quizz.title }}
       </p>

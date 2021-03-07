@@ -1,0 +1,78 @@
+<template>
+  <div v-if="headers">
+  <br>
+  <v-data-table
+      :headers="headers"
+      :items="lessons"
+      :items-per-page="5"
+      class="elevation-1"
+  >
+    <template v-slot:item.createdAt="{ item }">
+        {{ timeSince(item.createdAt) }}
+    </template>
+
+    <template v-slot:item.actions="{ item }">
+      <v-icon
+          small
+          class="mr-2"
+          @click="editItem(item)"
+      >
+        mdi-pencil
+      </v-icon>
+    </template>
+    <template v-slot:no-data>
+      <v-btn
+          color="primary"
+          @click="initialize"
+      >
+        Reset
+      </v-btn>
+    </template>
+
+
+  </v-data-table>
+
+
+  </div>
+</template>
+
+<script lang="ts">
+/* eslint-disable */
+import {Component, Prop, Vue} from 'vue-property-decorator';
+import QuizCard from "@/components/QuizzCard.vue";
+import {Lesson} from "@/models/Lessons";
+import moment from "moment";
+
+@Component({
+  components: {QuizCard: QuizCard},
+})
+export default class LessonsTable extends Vue {
+  @Prop({required: false, type: Array, default: []}) readonly lessons: Lesson[]
+
+  private headers= [
+    {
+      text: this.$t('Title'),
+      align: 'start',
+      sortable: false,
+      value: 'title',
+    },
+    { text: this.$t('Subtitle'), value: 'subtitle' },
+    { text: this.$t('Created'), value: 'createdAt' },
+    { text: 'Id', value: 'id' },
+    { text: this.$t('Actions'), value:'actions'},
+
+  ]
+  async created() {
+  }
+
+  public editItem(value:any) {
+    this.$router.push({ name: 'LessonEdit', params: { id: value.id } })
+    console.log(value.id)
+  }
+
+  public timeSince(date:Date) {
+    moment(date).fromNow()
+  }
+
+}
+</script>
