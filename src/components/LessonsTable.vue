@@ -1,11 +1,12 @@
 <template>
   <div v-if="headers">
+    <h1 class="title font-weight-light main-title">{{$t("Lessons")}}</h1>
   <br>
   <v-data-table
       :headers="headers"
       :items="lessons"
       :items-per-page="5"
-      class="elevation-1"
+      class="elevation-1 table"
   >
     <template v-slot:item.createdAt="{ item }">
         {{ timeSince(item.createdAt) }}
@@ -76,3 +77,13 @@ export default class LessonsTable extends Vue {
 
 }
 </script>
+
+<style>
+.main-title{
+  margin-top: 20px;
+  text-align: center;
+}
+.table{
+  margin: 20px;
+}
+</style>

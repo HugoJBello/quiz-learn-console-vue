@@ -20,28 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d5ff4e5-4e03-46ac-97bf-110324ebf1bb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/LessonsTable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/messages.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/dbService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/filesService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/actions/lesson.actions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/mutations/lesson.mutations.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/LessonEdit.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/QuizzCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuizzCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Lessons.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Lessons.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/quizesService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/availableQuizesForUser.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/availableQuizesForUser.actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/selectedQuiz.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/selectedQuiz.actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/LessonConsole.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LessonConsole.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/QuizzesMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/QuizzesMenu.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LessonsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LessonsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/dbService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/dbService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/LessonEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LessonEdit.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +49,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../geometry-learn-react-native" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -107,7 +89,9 @@
       <workItem from="1613911113524" duration="3624000" />
       <workItem from="1615047317831" duration="12145000" />
       <workItem from="1615143525054" duration="3730000" />
-      <workItem from="1615147859534" duration="1521000" />
+      <workItem from="1615147859534" duration="2477000" />
+      <workItem from="1615222191217" duration="1847000" />
+      <workItem from="1615224052351" duration="1942000" />
     </task>
     <servers />
   </component>

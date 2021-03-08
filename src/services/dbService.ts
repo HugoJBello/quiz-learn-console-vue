@@ -60,3 +60,18 @@ export const saveCourse = async (course: Course) => {
     }
     return coursesCollection.doc(course.id).set(course)
 }
+
+export const getLesson = async (id: string): Promise<Lesson| null > => {
+
+    const result = await lessonsCollection.where("id", "==", id).get()
+
+    console.log(id,result)
+    return result.docs[0].data() as Lesson
+}
+
+export const getQuiz = async (id: string): Promise<Quiz | null> => {
+    const result = await quizzesCollection.where("id", "==", id).get()
+
+    console.log(id,result)
+    return result.docs[0].data() as Quiz
+}
