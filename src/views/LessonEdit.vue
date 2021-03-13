@@ -1,32 +1,34 @@
 <template>
   <div>
-    <h1 class="title font-weight-light main-title">{{$t("Edit Lesson")}}</h1>
-     <v-card
-          elevation="2"
-          outlined
-          shaped
-          tile
-          class="general"
-      >
-        <v-card-title>{{$t('General')}}</v-card-title>
+    <h1 class="title font-weight-light main-title">{{ $t("Edit Lesson") }}</h1>
+    <v-card
+        elevation="2"
+        outlined
+        shaped
+        tile
+        class="general"
+    >
+      <v-card-title>{{ $t('General') }}</v-card-title>
 
-        <div  class="input">
+      <div class="input">
         <v-text-field
             :label="$t('Title')"
             outlined
             v-model="title"
         ></v-text-field>
-        </div>
+      </div>
 
-       <div  class="input">
-         <v-text-field
-             :label="$t('Description')"
-             outlined
-             v-model="description"
-         ></v-text-field>
-       </div>
+      <div class="input">
+        <v-text-field
+            :label="$t('Description')"
+            outlined
+            v-model="description"
+        ></v-text-field>
+        <vue-editor useCustomImageHandler @imageAdded="handleImageAdded" v-model="description"/>
 
-      </v-card>
+      </div>
+
+    </v-card>
 
 
     <v-card
@@ -36,7 +38,7 @@
         tile
         class="general"
     >
-      <v-card-title>{{$t('Content')}}</v-card-title>
+      <v-card-title>{{ $t('Content') }}</v-card-title>
 
     </v-card>
 
@@ -47,7 +49,7 @@
         tile
         class="general"
     >
-      <v-card-title>{{$t('Initial Quiz')}}</v-card-title>
+      <v-card-title>{{ $t('Initial Quiz') }}</v-card-title>
     </v-card>
 
     <v-card
@@ -57,7 +59,7 @@
         tile
         class="general"
     >
-      <v-card-title>{{$t('Final Quiz')}}</v-card-title>
+      <v-card-title>{{ $t('Final Quiz') }}</v-card-title>
 
     </v-card>
 
@@ -66,22 +68,27 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable */
 import {Component, Vue} from 'vue-property-decorator';
 import {getLesson} from "@/services/dbService";
 import {Lesson} from "@/models/Lessons";
 import {Quiz} from "@/models/Quiz";
+import {VueEditor} from "vue2-editor";
 
-@Component({
-})
+@Component({extends: VueEditor})
 export default class LessonEdit extends Vue {
 
   private lesson: Lesson | null
   private initialQuiz: Quiz | null
   private finalQuiz: Quiz | null
-  private parts: string[]  | null
+  private parts: string[] | null
 
   private title: string
   private description: string
+
+  async handleImageAdded(file: File, Editor: any, cursorLocation: any, resetUploader: any) {
+    console.log(file)
+  }
 
   async created() {
     const id = this.$route.params.id
@@ -114,7 +121,7 @@ export default class LessonEdit extends Vue {
     if (this.lesson?.parts) {
       this.parts = this.lesson?.parts as string[]
     } else {
-      this.parts= []
+      this.parts = []
     }
 
     this.$forceUpdate();
@@ -126,14 +133,16 @@ export default class LessonEdit extends Vue {
 </script>
 
 <style>
-.main-title{
+.main-title {
   margin-top: 20px;
   text-align: center;
 }
-.general{
-  margin:20px;
+
+.general {
+  margin: 20px;
 }
-.input{
-  margin:10px;
+
+.input {
+  margin: 10px;
 }
 </style>

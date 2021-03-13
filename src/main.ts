@@ -5,8 +5,10 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 import VueI18n from 'vue-i18n'
 import {messages} from './messages'
+import Vue2Editor from "vue2-editor";
 import 'vuetify/dist/vuetify.min.css';
 Vue.use(VueI18n)
+Vue.use(Vue2Editor as any)
 Vue.config.productionTip = false
 
 
