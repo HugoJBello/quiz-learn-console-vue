@@ -20,11 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d5ff4e5-4e03-46ac-97bf-110324ebf1bb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Editor.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/QuizEdit.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/filesService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/filesService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/LessonEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LessonEdit.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +53,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../geometry-learn-react-native" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/views" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -96,7 +97,8 @@
       <workItem from="1615222191217" duration="1847000" />
       <workItem from="1615224052351" duration="3885000" />
       <workItem from="1615557985514" duration="57000" />
-      <workItem from="1615639785100" duration="3028000" />
+      <workItem from="1615639785100" duration="7965000" />
+      <workItem from="1615661940172" duration="479000" />
     </task>
     <servers />
   </component>
@@ -120,8 +122,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/views/LessonEdit.vue</url>
-          <line>74</line>
-          <properties lambdaOrdinal="-1" />
+          <line>85</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
