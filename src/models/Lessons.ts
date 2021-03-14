@@ -26,4 +26,5 @@ export interface Part {
     subtitle: string,
     content: string,
     partNumber: number,
+    headImageUrl: string,
 }

@@ -45,6 +45,18 @@ export const getLessonsAvailable = async (limit: number, skip: number): Promise<
     return lessons
 }
 
+export const getLessonsInCourse = async (limit: number, skip: number, courseId: string): Promise<Lesson[]> => {
+    //const result  = await quizzesCollection.limit(10).where("public", "==", true).orderBy("date", "desc").get()
+    const result = await lessonsCollection.limit(limit).where("courseId", "==", courseId).get()
+    const lessons = []
+
+    for (const doc of result.docs) {
+        lessons.push(doc.data() as Lesson)
+    }
+    console.log(lessons)
+    return lessons
+}
+
 export const saveLesson = async (lesson: Lesson) => {
     if (!lesson.id) {
         lesson.id = uuidv4()
@@ -84,6 +96,13 @@ export const getQuiz = async (id: string): Promise<Quiz | null> => {
 
     console.log(id,result)
     return result.docs[0].data() as Quiz
+}
+
+export const getCourse = async (id: string): Promise<Course | null> => {
+    const result = await coursesCollection.where("id", "==", id).get()
+
+    console.log(id,result)
+    return result.docs[0].data() as Course
 }
 
 export const getPart = async (id: string): Promise<Part | null> => {

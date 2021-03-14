@@ -76,6 +76,42 @@
 
       </v-card>
 
+      <v-card
+          elevation="2"
+          outlined
+          shaped
+          tile
+          class="general"
+      >
+
+        <v-card-title>{{ $t('Head Image') }}</v-card-title>
+        <v-card-text>
+          <v-layout row wrap>
+            <v-flex xs8>
+          <v-file-input
+              v-model="files"
+              placeholder="Upload your documents"
+              label="File input"
+              multiple
+              prepend-icon="mdi-paperclip"
+          />
+            </v-flex>
+            <v-flex xs4>
+              <v-btn
+                  large
+                  @click="upload">{{ $t('Upload') }}
+              </v-btn>
+            </v-flex>
+          </v-layout>
+          <v-img
+              lazy-src="https://picsum.photos/id/11/10/6"
+              max-height="150"
+              max-width="250"
+              :src="imageUrl"
+          ></v-img>
+        </v-card-text>
+      </v-card>
+
     </div>
 
 
@@ -106,6 +142,8 @@ export default class PartEdit extends Vue {
   private subtitle: string = this.$i18n.tc('Part subtitle')
   private partNumber: number = 0
   private partNumberInput: number = 1
+  private files: File[] = []
+  private imageUrl: string
 
   private content: string = this.$i18n.tc('Content')
 
@@ -163,6 +201,9 @@ export default class PartEdit extends Vue {
     if (this.part.content) {
       this.content = this.part.content
     }
+    if (this.part.headImageUrl) {
+      this.imageUrl = this.part.headImageUrl
+    }
     this.$forceUpdate();
   }
 
@@ -175,6 +216,7 @@ export default class PartEdit extends Vue {
       lessonId: this.lessonId,
       subtitle: this.subtitle,
     } as Part
+    if (this.imageUrl) this.part.headImageUrl = this.imageUrl
     console.log(this.part)
   }
 
@@ -184,6 +226,13 @@ export default class PartEdit extends Vue {
     Editor.insertEmbed(cursorLocation, 'image', url);
   }
 
+  async upload(){
+    console.log("-----")
+    const image = await uploadFile(this.files[0])
+    console.log(image)
+    this.imageUrl = image
+    this.$forceUpdate()
+  }
 
   async save() {
     this.updatePartObject()

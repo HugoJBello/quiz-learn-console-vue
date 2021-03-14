@@ -20,14 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d5ff4e5-4e03-46ac-97bf-110324ebf1bb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/views/PartEdit.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Course.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Course.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Lessons.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Lessons.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/dbService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/dbService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/LessonEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LessonEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/filesService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/filesService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/PartEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/PartEdit.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +98,7 @@
       <workItem from="1615639785100" duration="7965000" />
       <workItem from="1615661940172" duration="1199000" />
       <workItem from="1615739306312" duration="13043000" />
-      <workItem from="1615757475132" duration="3597000" />
+      <workItem from="1615757475132" duration="5039000" />
     </task>
     <servers />
   </component>

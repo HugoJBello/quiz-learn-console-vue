@@ -1,7 +1,7 @@
 import {storage} from "@/firebase";
 import { v4 as uuidv4 } from 'uuid';
 
-export const uploadFile = async (file: File): Promise<any> => {
+export const uploadFile = async (file: File): Promise<string> => {
     storage
 
     const storageRef = storage.ref();
