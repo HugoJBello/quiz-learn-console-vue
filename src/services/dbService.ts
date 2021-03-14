@@ -17,9 +17,10 @@ export const getQuizzesAvailable = async (limit: number, skip: number): Promise<
 }
 
 export const saveQuiz = async (quiz: Quiz) => {
-    if (!quiz.id) {
+    if (!quiz.id || quiz.id === "None") {
         quiz.id = uuidv4()
     }
+    console.log(quiz)
     return quizzesCollection.doc(quiz.id).set(quiz)
 }
 

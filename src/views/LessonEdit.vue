@@ -3,6 +3,8 @@
     <h1 class="title font-weight-light main-title">{{ $t("Edit Lesson") }}</h1>
     <v-btn
         large
+        class="save"
+        :loading="!lesson"
         @click="save">{{ $t('Save') }}
     </v-btn>
     <v-card
@@ -57,10 +59,25 @@
         class="general"
     >
       <v-card-title>{{ $t('Initial Quiz') }}</v-card-title>
-      <v-btn
-          large
-          @click="createInitialQuiz">{{ $t('Create initial Quiz') }}
-      </v-btn>
+
+      <v-card-text>
+        <div v-if="initialQuiz && initialQuiz.id">
+          <span class="body-2">{{initialQuiz.title}}</span>
+          <v-btn
+              class="quiz-button"
+              large
+              @click="editInitialQuiz">{{ $t('Edit') }}
+          </v-btn>
+        </div>
+        <div v-else>
+          <v-btn
+              large
+              @click="createInitialQuiz">{{ $t('Create initial Quiz') }}
+          </v-btn>
+        </div>
+
+      </v-card-text>
+
     </v-card>
 
     <v-card
@@ -71,7 +88,23 @@
         class="general"
     >
       <v-card-title>{{ $t('Final Quiz') }}</v-card-title>
+      <v-card-text>
+        <div v-if="finalQuiz && finalQuiz.id">
+          <span class="body-2">{{finalQuiz.title}}</span>
+          <v-btn
+              class="quiz-button"
+              large
+              @click="editFinalQuiz">{{ $t('Edit') }}
+          </v-btn>
+        </div>
+        <div v-else>
+          <v-btn
+              large
+              @click="createFinalQuiz">{{ $t('Create final Quiz') }}
+          </v-btn>
+        </div>
 
+      </v-card-text>
     </v-card>
 
   </div>
@@ -83,7 +116,7 @@
 import {Component, Vue, Watch} from 'vue-property-decorator';
 import {getLesson, saveLesson} from "@/services/dbService";
 import {Lesson} from "@/models/Lessons";
-import {Quiz} from "@/models/Quiz";
+import {Quiz, QuizType} from "@/models/Quiz";
 import {VueEditor} from "vue2-editor";
 import {uploadFile} from "@/services/filesService";
 
@@ -95,7 +128,7 @@ export default class LessonEdit extends Vue {
   private finalQuiz: Quiz | null
   private parts: string[] | null
   private id: string | null
-  private content: string | null
+  private content: string = this.$i18n.tc('Content')
 
   private title: string = this.$i18n.tc('Title')
   private description: string = this.$i18n.tc('Description')
@@ -167,8 +200,19 @@ export default class LessonEdit extends Vue {
   }
   async createInitialQuiz(){
     await this.save()
-    await this.$router.push({ name: 'QuizEdit', params: { id: "None", lessonId:this.id || "",quizType:"initial" } })
-
+    await this.$router.push({ name: 'QuizEdit', params: { id: "None", lessonId:this.id || "",quizType:QuizType.INITIAL } })
+  }
+  async editInitialQuiz(){
+    await this.save()
+    await this.$router.push({ name: 'QuizEdit', params: { id: (this.initialQuiz as any).id, lessonId:this.id || "",quizType:QuizType.INITIAL } })
+  }
+  async createFinalQuiz(){
+    await this.save()
+    await this.$router.push({ name: 'QuizEdit', params: { id: "None", lessonId:this.id || "",quizType:QuizType.FINAL } })
+  }
+  async editFinalQuiz(){
+    await this.save()
+    await this.$router.push({ name: 'QuizEdit', params: { id: (this.finalQuiz as any).id, lessonId:this.id || "",quizType:QuizType.FINAL } })
   }
   @Watch('description')
   onPropertyChanged(value: string, oldValue: string) {
@@ -201,5 +245,13 @@ export default class LessonEdit extends Vue {
 #editor2 {
   height: 350px
 }
+
+.save{
+  margin-left: 10px;
+}
+.quiz-button{
+  margin-left: 10px;
+}
+
 
 </style>

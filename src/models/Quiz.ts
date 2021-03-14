@@ -25,5 +25,6 @@ export interface Question {
     answerOptions: string[],
     correctAnswers: number[],
     tips: string[],
-    explanation: string
+    explanation: string,
+    questionNumber: number,
 }

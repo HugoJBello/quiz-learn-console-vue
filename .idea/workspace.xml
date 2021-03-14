@@ -20,13 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d5ff4e5-4e03-46ac-97bf-110324ebf1bb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/views/QuizEdit.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/QuestionEdit.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/filesService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/filesService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Quiz.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Quiz.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/dbService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/dbService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/LessonEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LessonEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/QuizEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/QuizEdit.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +53,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -66,10 +66,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/views" />
       <recent name="$PROJECT_DIR$/src/store/mutations" />
       <recent name="$PROJECT_DIR$/src/store/actions" />
-      <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/services" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -98,7 +98,8 @@
       <workItem from="1615224052351" duration="3885000" />
       <workItem from="1615557985514" duration="57000" />
       <workItem from="1615639785100" duration="7965000" />
-      <workItem from="1615661940172" duration="479000" />
+      <workItem from="1615661940172" duration="1199000" />
+      <workItem from="1615739306312" duration="12665000" />
     </task>
     <servers />
   </component>
@@ -122,7 +123,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/views/LessonEdit.vue</url>
-          <line>85</line>
+          <line>118</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
