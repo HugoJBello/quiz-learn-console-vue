@@ -50,11 +50,25 @@
         tile
         class="general"
     >
-      <v-card-title>{{ $t('Content') }}</v-card-title>
-      <div class="input">
-        <vue-editor id="editor2" useCustomImageHandler @image-added="handleImageAdded" v-model="content"/>
+      <v-card-title>{{ $t('Parts') }}</v-card-title>
+      <v-card-text>
+        <div>
+          <v-btn
+              large
+              @click="createPart">{{ $t('Create new lesson part') }}
+          </v-btn>
+        </div>
 
-      </div>
+        <div v-for="part in lesson.parts" :key="part.partNumber">
+          <span class="body-2">{{part.title}}</span>
+          <v-btn
+              class="quiz-button"
+              large
+              @click="editPart(part)">{{ $t('EditPart') }}
+          </v-btn>
+        </div>
+
+      </v-card-text>
 
     </v-card>
 
@@ -122,7 +136,7 @@
 /* eslint-disable */
 import {Component, Vue, Watch} from 'vue-property-decorator';
 import {getLesson, saveLesson} from "@/services/dbService";
-import {Lesson} from "@/models/Lessons";
+import {Lesson, Part} from "@/models/Lessons";
 import {Quiz, QuizType} from "@/models/Quiz";
 import {VueEditor} from "vue2-editor";
 import {uploadFile} from "@/services/filesService";
@@ -133,19 +147,12 @@ export default class LessonEdit extends Vue {
   private lesson: Lesson | null
   private initialQuiz: Quiz | null
   private finalQuiz: Quiz | null
-  private parts: string[] | null
   private id: string | null
   private content: string = this.$i18n.tc('Content')
 
   private title: string = this.$i18n.tc('Title')
   private subtitle: string = this.$i18n.tc('Subtitle')
   private description: string = this.$i18n.tc('Description')
-
-  async handleImageAdded(file: File, Editor: any, cursorLocation: any) {
-    const snapshot = await uploadFile(file)
-    const url = snapshot
-    Editor.insertEmbed(cursorLocation, 'image', url);
-  }
 
   async created() {
     this.id = this.$route.params.id
@@ -169,7 +176,7 @@ export default class LessonEdit extends Vue {
     }
 
     if (this.lesson?.subtitle) {
-      this.subtitle = this.lesson?.subtitles as string
+      this.subtitle = this.lesson?.subtitle as string
     }
 
     if (this.lesson?.initialQuiz) {
@@ -183,14 +190,6 @@ export default class LessonEdit extends Vue {
     } else {
       this.finalQuiz = {} as Quiz
     }
-
-    if (this.lesson?.parts) {
-      this.parts = this.lesson?.parts as string[]
-      this.content = this.parts[0]
-    } else {
-      this.parts = [""]
-    }
-
     this.$forceUpdate();
   }
 
@@ -200,7 +199,7 @@ export default class LessonEdit extends Vue {
       title: this.title,
       subtitle: this.subtitle,
       description: this.description,
-      parts: [this.content],
+      parts: [] as Part[],
       initialQuiz: this.initialQuiz,
       finalQuiz: this.finalQuiz
     } as Lesson
@@ -227,6 +226,15 @@ export default class LessonEdit extends Vue {
     await this.save()
     await this.$router.push({ name: 'QuizEdit', params: { id: (this.finalQuiz as any).id, lessonId:this.id || "",quizType:QuizType.FINAL } })
   }
+  async createPart(){
+    await this.save()
+    await this.$router.push({ name: 'PartEdit', params: { id: "None", lessonId:this.id || "",partNumber:"0",action:"create" } })
+  }
+  async editPart(part:Part){
+    await this.save()
+    await this.$router.push({ name: 'PartEdit', params: { id: part.id, lessonId:this.id || "",partNumber:""+ part.partNumber,action:"edit" } })
+  }
+
   @Watch('description')
   onPropertyChanged(value: string, oldValue: string) {
     console.log(value)

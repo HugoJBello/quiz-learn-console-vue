@@ -9,7 +9,7 @@ export interface Lesson {
     description: string,
     frontImage: string,
     subtitle: string,
-    parts: string[],
+    parts: Part[],
     difficulty: string,
     initialQuiz: Quiz,
     finalQuiz: Quiz,
@@ -17,4 +17,13 @@ export interface Lesson {
     public: boolean,
     courseId: string,
     date: Date
+}
+
+export interface Part {
+    id:string,
+    lessonId:string,
+    title: string,
+    subtitle: string,
+    content: string,
+    partNumber: number,
 }

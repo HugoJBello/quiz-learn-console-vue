@@ -1,6 +1,6 @@
-import {coursesCollection, lessonsCollection, quizzesCollection} from "@/firebase";
+import {coursesCollection, lessonsCollection, partsCollection, quizzesCollection} from "@/firebase";
 import {Quiz} from "../models/Quiz";
-import {Lesson} from "@/models/Lessons";
+import {Lesson, Part} from "@/models/Lessons";
 import {Course} from "@/models/Course";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -23,6 +23,15 @@ export const saveQuiz = async (quiz: Quiz) => {
     console.log(quiz)
     return quizzesCollection.doc(quiz.id).set(quiz)
 }
+
+export const savePart = async (part: Part) => {
+    if (!part.id || part.id === "None") {
+        part.id = uuidv4()
+    }
+    console.log(part)
+    return partsCollection.doc(part.id).set(part)
+}
+
 
 export const getLessonsAvailable = async (limit: number, skip: number): Promise<Lesson[]> => {
     //const result  = await quizzesCollection.limit(10).where("public", "==", true).orderBy("date", "desc").get()
@@ -75,4 +84,10 @@ export const getQuiz = async (id: string): Promise<Quiz | null> => {
 
     console.log(id,result)
     return result.docs[0].data() as Quiz
+}
+
+export const getPart = async (id: string): Promise<Part | null> => {
+    const result = await partsCollection.where("id", "==", id).get()
+    console.log(id,result)
+    return result.docs[0].data() as Part
 }

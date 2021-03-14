@@ -29,6 +29,7 @@ const storage = firebase.storage()
 // collection references
 const results = db.collection('results')
 const quizzesCollection = db.collection('quizzes')
+const partsCollection = db.collection('lessonContentParts')
 const coursesCollection = db.collection('courses')
 const lessonsCollection = db.collection('lessons')
 
@@ -40,5 +41,6 @@ export {
     quizzesCollection,
     coursesCollection,
     lessonsCollection,
+    partsCollection,
     storage
 }
