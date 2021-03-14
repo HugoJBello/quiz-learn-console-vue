@@ -24,6 +24,13 @@
         ></v-text-field>
       </div>
 
+      <div class="input">
+        <v-text-field
+            :label="$t('Subtitle')"
+            outlined
+            v-model="subtitle"
+        ></v-text-field>
+      </div>
 
       <div class="input">
         <v-text-field
@@ -131,6 +138,7 @@ export default class LessonEdit extends Vue {
   private content: string = this.$i18n.tc('Content')
 
   private title: string = this.$i18n.tc('Title')
+  private subtitle: string = this.$i18n.tc('Subtitle')
   private description: string = this.$i18n.tc('Description')
 
   async handleImageAdded(file: File, Editor: any, cursorLocation: any) {
@@ -160,6 +168,10 @@ export default class LessonEdit extends Vue {
       this.title = this.lesson?.title as string
     }
 
+    if (this.lesson?.subtitle) {
+      this.subtitle = this.lesson?.subtitles as string
+    }
+
     if (this.lesson?.initialQuiz) {
       this.initialQuiz = this.lesson?.initialQuiz as Quiz
     } else {
@@ -186,6 +198,7 @@ export default class LessonEdit extends Vue {
     this.lesson = {
       id: this.id,
       title: this.title,
+      subtitle: this.subtitle,
       description: this.description,
       parts: [this.content],
       initialQuiz: this.initialQuiz,
