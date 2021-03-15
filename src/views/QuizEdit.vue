@@ -166,7 +166,6 @@ export default class QuizEdit extends Vue {
   }
 
   editQuestion(createdQuestion: Question) {
-
     this.questions = this.questions as Question[]
     const index = createdQuestion.questionNumber
     this.questions[index] = createdQuestion

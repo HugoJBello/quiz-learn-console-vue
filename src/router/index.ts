@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import QuizzesMenu from '../views/QuizzesMenu.vue'
+import CoursesMenu from '../views/CoursesMenu.vue'
 import QuizzProgress from "@/views/QuizzProgress.vue";
 import Register from "@/views/Register.vue";
 import Login from "@/views/Login.vue";
@@ -15,7 +15,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'Console',
-    component: QuizzesMenu
+    component: CoursesMenu
   },
   {
     path: '/quizz-progress',
@@ -23,12 +23,12 @@ const routes: Array<RouteConfig> = [
     component: QuizzProgress
   },
   {
-    path: '/lesson_console',
+    path: '/lesson_console/:courseId',
     name: 'LessonConsole',
     component: LessonConsole
   },
   {
-    path: '/lesson/edit/:id',
+    path: '/lesson/:action/:courseId/:id',
     name: 'LessonEdit',
     component: LessonEdit
   },

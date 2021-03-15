@@ -10,12 +10,13 @@ export interface Lesson {
     frontImage: string,
     subtitle: string,
     parts: Part[],
-    difficulty: string,
+    difficultyPercent: number,
     initialQuiz: Quiz,
     finalQuiz: Quiz,
     quizzes: Quiz[],
     public: boolean,
     courseId: string,
+    imageUrl:string,
     date: Date
 }
 

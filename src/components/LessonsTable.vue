@@ -1,7 +1,5 @@
 <template>
   <div v-if="headers">
-    <h1 class="title font-weight-light main-title">{{$t("Lessons")}}</h1>
-  <br>
   <v-data-table
       :headers="headers"
       :items="lessons"
@@ -22,12 +20,6 @@
       </v-icon>
     </template>
     <template v-slot:no-data>
-      <v-btn
-          color="primary"
-          @click="initialize"
-      >
-        Reset
-      </v-btn>
     </template>
 
 
@@ -40,7 +32,7 @@
 <script lang="ts">
 /* eslint-disable */
 import {Component, Prop, Vue} from 'vue-property-decorator';
-import QuizCard from "@/components/QuizzCard.vue";
+import QuizCard from "@/components/CourseCard.vue";
 import {Lesson} from "@/models/Lessons";
 import moment from "moment";
 
@@ -67,7 +59,7 @@ export default class LessonsTable extends Vue {
   }
 
   public editItem(value:any) {
-    this.$router.push({ name: 'LessonEdit', params: { id: value.id } })
+    this.$router.push({ name: 'LessonEdit', params: { action:"edit", id: value.id, courseId: value.courseId || "None" } })
     console.log(value.id)
   }
 

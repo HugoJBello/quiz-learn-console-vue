@@ -1,37 +1,38 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {State} from "../models/State";
-import {setSelectedQuizMutation} from "@/store/mutations/selectedQuiz.mutations";
-import {setSelectedQuizAction} from "@/store/actions/selectedQuiz.actions";
-import {setAvailableQuizesForUser} from "@/store/actions/availableQuizesForUser.actions";
-import {setAvailableQuizesForUserMutation} from "@/store/mutations/availableQuizesForUser.mutations";
+import {setSelectedCourseMutation} from "@/store/mutations/selectedCourses.mutations";
+import {setSelectedCourseAction} from "@/store/actions/selectedCourseAction.actions";
+import {setAvailableCoursesForUser} from "@/store/actions/availableCoursesForUser.actions";
+import {setAvailableCoursesForUserMutation} from "@/store/mutations/availableCoursesForUser.mutations";
 import {setUserMutation} from "@/store/mutations/user.mutations";
 import {setUser} from "@/store/actions/user.actions";
 import {setLessonsMutation} from "@/store/mutations/lesson.mutations";
-import {setLessons} from "@/store/actions/lesson.actions";
+import {setLessons, setLessonsInCourse} from "@/store/actions/lesson.actions";
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        selectedQuiz: null,
+        selectedCourse: null,
         answers: [],
         status: null,
         lessons: null,
         user: null,
-        availableQuizesForUser: null
+        availableCoursesForUser: null
     } as State,
     mutations: {
-        setSelectedQuizzMutation: setSelectedQuizMutation,
+        setSelectedQuizzMutation: setSelectedCourseMutation,
         setUserMutation: setUserMutation,
         setLessonsMutation: setLessonsMutation,
-        setAvailableQuizesForUserMutation: setAvailableQuizesForUserMutation,
+        setAvailableCoursesForUserMutation: setAvailableCoursesForUserMutation,
     },
     actions: {
-        setSelectedQuizAction: setSelectedQuizAction,
+        setLessonsInCourse: setLessonsInCourse,
+        setSelectedQuizAction: setSelectedCourseAction,
         setUser: setUser,
         setLessons: setLessons,
-        setAvailableQuizesForUser: setAvailableQuizesForUser,
+        setAvailableCoursesForUser: setAvailableCoursesForUser,
     },
     modules: {}
 })

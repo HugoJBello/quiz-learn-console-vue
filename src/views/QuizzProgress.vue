@@ -104,7 +104,7 @@
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
 import {Quiz} from "../models/Quiz";
-import QuizCard from "@/components/QuizzCard.vue";
+import QuizCard from "@/components/CourseCard.vue";
 
 @Component({
   components: {QuizCard: QuizCard},

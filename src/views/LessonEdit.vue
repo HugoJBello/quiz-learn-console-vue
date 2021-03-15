@@ -128,6 +128,43 @@
       </v-card-text>
     </v-card>
 
+    <v-card
+        elevation="2"
+        outlined
+        shaped
+        tile
+        class="general"
+    >
+
+      <v-card-title>{{ $t('Head Image') }}</v-card-title>
+      <v-card-text>
+        <v-layout row wrap>
+          <v-flex xs8>
+            <v-file-input
+                v-model="files"
+                placeholder="Upload your documents"
+                label="File input"
+                multiple
+                prepend-icon="mdi-paperclip"
+            />
+          </v-flex>
+          <v-flex xs4>
+            <v-btn
+                v-if="files && files.length>0"
+                large
+                @click="upload">{{ $t('Upload') }}
+            </v-btn>
+          </v-flex>
+        </v-layout>
+        <v-img
+            v-if="imageUrl"
+            lazy-src="https://picsum.photos/id/11/10/6"
+            max-height="150"
+            :src="imageUrl"
+        ></v-img>
+      </v-card-text>
+    </v-card>
+
   </div>
 
 </template>
@@ -140,32 +177,37 @@ import {Lesson, Part} from "@/models/Lessons";
 import {Quiz, QuizType} from "@/models/Quiz";
 import {VueEditor} from "vue2-editor";
 import {uploadFile} from "@/services/filesService";
+import {v4 as uuidv4} from "uuid";
 
 @Component({extends: VueEditor})
 export default class LessonEdit extends Vue {
 
-  private lesson: Lesson | null
-  private initialQuiz: Quiz | null
-  private finalQuiz: Quiz | null
-  private id: string | null
-  private content: string = this.$i18n.tc('Content')
+  private lesson: Lesson | null = {} as Lesson
+  private initialQuiz: Quiz | null = {} as Quiz
+  private finalQuiz: Quiz | null = {} as Quiz
+  private id: string | null = ""
+  private courseId: string | null = ""
+  private files: File[] = []
 
   private title: string = this.$i18n.tc('Title')
   private subtitle: string = this.$i18n.tc('Subtitle')
   private description: string = this.$i18n.tc('Description')
+  private imageUrl: string = ""
+  private action: string = "edit"
 
   async created() {
     this.id = this.$route.params.id
-    this.lesson = await getLesson(this.id)
-    console.log(this.lesson)
-
+    if (this.id=="None" || this.id ==="") this.id=uuidv4()
+    this.courseId = this.$route.params.courseId
+    this.action = this.$route.params.action
+    if (this.action === "edit") {
+      this.lesson = await getLesson(this.id)
+    }
     this.initLesson()
-
   }
 
   public initLesson() {
-    if (!this.lesson) this.lesson = {} as Lesson
-
+    if (!this.lesson || this.action==="create") this.lesson = {id:uuidv4(), courseId: this.courseId} as Lesson
 
     if (this.lesson?.description) {
       this.description = this.lesson?.description as string
@@ -173,6 +215,9 @@ export default class LessonEdit extends Vue {
 
     if (this.lesson?.title) {
       this.title = this.lesson?.title as string
+    }
+    if (this.lesson?.courseId) {
+      this.courseId = this.lesson?.courseId as string
     }
 
     if (this.lesson?.subtitle) {
@@ -190,6 +235,12 @@ export default class LessonEdit extends Vue {
     } else {
       this.finalQuiz = {} as Quiz
     }
+
+    if (this.lesson?.imageUrl) {
+      this.imageUrl = this.lesson?.imageUrl as string
+    }
+
+
     this.$forceUpdate();
   }
 
@@ -201,15 +252,20 @@ export default class LessonEdit extends Vue {
       description: this.description,
       parts: [] as Part[],
       initialQuiz: this.initialQuiz,
-      finalQuiz: this.finalQuiz
+      finalQuiz: this.finalQuiz,
+      imageUrl:this.imageUrl
     } as Lesson
+
+    if (this.courseId && this.courseId !== "") {
+      this.lesson.courseId = this.courseId
+    }
   }
 
   async save() {
     this.updateLessonObject()
-    const result = await saveLesson(this.lesson as Lesson)
-    console.log(result)
+    await saveLesson(this.lesson as Lesson)
   }
+
   async createInitialQuiz(){
     await this.save()
     await this.$router.push({ name: 'QuizEdit', params: { id: "None", lessonId:this.id || "",quizType:QuizType.INITIAL } })
@@ -235,9 +291,14 @@ export default class LessonEdit extends Vue {
     await this.$router.push({ name: 'PartEdit', params: { id: part.id, lessonId:this.id || "",partNumber:""+ part.partNumber,action:"edit" } })
   }
 
+  async upload(){
+    const image = await uploadFile(this.files[0])
+    this.imageUrl = image
+    this.$forceUpdate()
+  }
+
   @Watch('description')
   onPropertyChanged(value: string, oldValue: string) {
-    console.log(value)
   }
 
 }

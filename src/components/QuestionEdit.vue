@@ -121,7 +121,7 @@
 <script lang="ts">
 /* eslint-disable */
 import {Component, Prop, Vue} from 'vue-property-decorator';
-import QuizCard from "@/components/QuizzCard.vue";
+import QuizCard from "@/components/CourseCard.vue";
 import {Lesson} from "@/models/Lessons";
 import moment from "moment";
 import {Question} from "@/models/Quiz";
@@ -143,6 +143,7 @@ export default class QuestionEdit extends Vue {
     return {questionText:"", questionNumber:this.index, explanation:"", answerOptions: [] as string[], correctAnswers: [] as number[]} as Question
   }
   async created() {
+    console.log("----------", this.existingQuestion)
     if (this.existingQuestion) {
       this.editingQuestion = Object.assign({}, this.existingQuestion)
     } else {
@@ -156,7 +157,6 @@ export default class QuestionEdit extends Vue {
     this.$emit("addQuestion", this.editingQuestion)
     this.questionDialog = false
     this.newAnswer = ""
-    this.editingQuestion= this.initQuestion()
   }
   editQuestion(){
     this.editingQuestion.questionNumber = this.index
@@ -164,7 +164,6 @@ export default class QuestionEdit extends Vue {
     this.$emit("editQuestion", this.editingQuestion)
     this.questionDialog = false
     this.newAnswer = ""
-    this.editingQuestion= this.initQuestion()
   }
   addNewAnswer() {
     this.addingQuestionNewAnswer = true

@@ -1,10 +1,11 @@
 import {Quiz} from "./Quiz";
 import {Lesson} from "./Lessons";
 import {User, UserInfo} from "firebase";
+import {Course} from "@/models/Course";
 
 export interface State {
-    selectedQuiz: Quiz | null,
-    availableQuizesForUser: Quiz[] | null,
+    selectedCourse: Course | null,
+    availableCoursesForUser: Quiz[] | null,
     answers: Answer[],
     status: string | null
     user: User | null

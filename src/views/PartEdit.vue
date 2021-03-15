@@ -98,12 +98,14 @@
             </v-flex>
             <v-flex xs4>
               <v-btn
+                  v-if="files && files.length>0"
                   large
                   @click="upload">{{ $t('Upload') }}
               </v-btn>
             </v-flex>
           </v-layout>
           <v-img
+              v-if="imageUrl"
               lazy-src="https://picsum.photos/id/11/10/6"
               max-height="150"
               max-width="250"
@@ -227,7 +229,6 @@ export default class PartEdit extends Vue {
   }
 
   async upload(){
-    console.log("-----")
     const image = await uploadFile(this.files[0])
     console.log(image)
     this.imageUrl = image

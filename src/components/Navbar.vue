@@ -15,7 +15,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link to="/lesson_console">
+        <v-list-item link to="/lesson_console/None">
           <v-list-item-action>
             <v-icon>mdi-notebook-outline</v-icon>
           </v-list-item-action>
@@ -30,6 +30,15 @@
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>login</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item v-if="user" @click="logout">
+          <v-list-item-action>
+            <v-icon>mdi-account</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>logout</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -66,6 +75,7 @@
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
+import {auth} from "@/firebase";
 
 @Component({
 })
@@ -78,6 +88,13 @@ export default class Navbar extends Vue {
 
   created() {
     this.$vuetify.theme.dark = true
+  }
+
+  async logout(){
+    await auth.signOut()
+    this.$router.push({ name: 'Login'})
+
+
   }
 
 }

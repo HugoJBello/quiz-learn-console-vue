@@ -20,11 +20,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d5ff4e5-4e03-46ac-97bf-110324ebf1bb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/store/actions/availableCoursesForUser.actions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/actions/selectedCourseAction.actions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/mutations/selectedCourses.mutations.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LessonsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LessonsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/QuestionEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuestionEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/QuizzCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CourseCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Course.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Course.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Lessons.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Lessons.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/dbService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/dbService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/filesService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/filesService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/State.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/State.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/availableQuizesForUser.actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/lesson.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/lesson.actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/selectedQuiz.actions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/mutations/availableQuizesForUser.mutations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/mutations/availableCoursesForUser.mutations.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/mutations/selectedQuiz.mutations.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/LessonConsole.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LessonConsole.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/LessonEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LessonEdit.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/PartEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/PartEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/QuizEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/QuizEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/QuizzProgress.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/QuizzProgress.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/QuizzesMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CoursesMenu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/example.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/example.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +118,7 @@
       <workItem from="1615639785100" duration="7965000" />
       <workItem from="1615661940172" duration="1199000" />
       <workItem from="1615739306312" duration="13043000" />
-      <workItem from="1615757475132" duration="5039000" />
+      <workItem from="1615757475132" duration="15091000" />
     </task>
     <servers />
   </component>
@@ -122,7 +142,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/views/LessonEdit.vue</url>
-          <line>139</line>
+          <line>176</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
