@@ -93,8 +93,6 @@ export default class Navbar extends Vue {
   async logout(){
     await auth.signOut()
     this.$router.push({ name: 'Login'})
-
-
   }
 
 }
