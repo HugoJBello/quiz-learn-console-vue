@@ -13,7 +13,12 @@
         :loading="!quiz ||! lesson"
         @click="save">{{ $t('Save') }}
     </v-btn>
-
+    <v-btn
+        largedificultyPercent
+        class="save"
+        :loading="!quiz ||! lesson"
+        @click="clickDelete">{{ $t('Delete') }}
+    </v-btn>
     <v-card
         outlined
         shaped
@@ -23,11 +28,23 @@
       <v-card-title>{{ $t('General') }}</v-card-title>
 
       <div class="input">
-        <v-text-field
-            :label="$t('Title')"
-            outlined
-            v-model="title"
-        ></v-text-field>
+        <v-layout row wrap>
+          <v-flex xs8>
+            <v-text-field
+                :label="$t('Quiz title')"
+                outlined
+                v-model="title"
+            ></v-text-field>
+          </v-flex>
+          <v-flex xs4>
+            <v-slider
+                class="slider"
+                v-model="difficultyPercent"
+                :label="$t('Quiz difficulty') + ' ' + difficultyPercent"
+                thumb-label="always"
+            ></v-slider>
+          </v-flex>
+        </v-layout>
       </div>
 
 
@@ -40,27 +57,31 @@
       </div>
 
     </v-card>
+    <DeleteDialog v-model="dialogDelete" @deleteAction="deleteQuiz"></DeleteDialog>
 
 
     <div>
-      <QuestionEdit :index="0" action="create" @addQuestion="createQuestion" @editQuestion="createQuestion"></QuestionEdit>
+      <QuestionEdit :index="0" action="create" @addQuestion="createQuestion"
+                    @editQuestion="createQuestion"></QuestionEdit>
 
       <v-card v-for="(question, index) in questions" :key="question.questionText"
               shaped
               tile
               class="general"
       >
-        <v-card-title>{{$t("Question")}} {{index +1}} </v-card-title>
-        <QuestionEdit :index="index" action="edit" :existingQuestion="question" @editQuestion="editQuestion"></QuestionEdit>
+        <v-card-title>{{ $t("Question") }} {{ index + 1 }}</v-card-title>
+        <QuestionEdit :index="index" action="edit" :existingQuestion="question"
+                      @editQuestion="editQuestion"></QuestionEdit>
 
         <v-card-text class="question-content">
-        <div class="question-text">
-          <span class="body-2">{{ question.questionText }}</span>
-        </div>
+          <div class="question-text">
+            <span class="text-body-1">{{ question.questionText }}</span>
+          </div>
 
-        <div class="question-anwers" v-for="(answer, index) in question.answerOptions" :key="answer">
-          <span class="body-2">{{ index +1 }}. </span> <span class="body-2">{{ answer }}</span>
-        </div>
+          <div class="question-anwers" v-for="(answer, index) in question.answerOptions" :key="answer">
+            <span class="body-2">({{ index + 1 }}) </span> <span class="body-2 answer-text">{{ answer }}</span>
+            <span  class="correct" v-if="isAnswerCorrect(question,index)">{{$t("(correct)")}}</span>
+          </div>
         </v-card-text>
       </v-card>
 
@@ -74,13 +95,14 @@
 <script lang="ts">
 /* eslint-disable */
 import {Component, Vue, Watch} from 'vue-property-decorator';
-import {getLesson, getQuiz, saveLesson, saveQuiz} from "@/services/dbService";
+import {deleteQuiz, getLesson, getQuiz, saveLesson, saveQuiz} from "@/services/dbService";
 import {Question, Quiz, QuizType} from "@/models/Quiz";
 import {Lesson} from "@/models/Lessons";
 import {v4 as uuidv4} from "uuid";
 import QuestionEdit from "@/components/QuestionEdit.vue";
+import DeleteDialog from "@/components/DeleteDialog.vue";
 
-@Component({extends:QuestionEdit})
+@Component({extends: QuestionEdit, components:{DeleteDialog}})
 export default class QuizEdit extends Vue {
 
   private quiz: Quiz | null
@@ -91,6 +113,8 @@ export default class QuizEdit extends Vue {
   private lesson: Lesson | null
   private title: string = this.$i18n.tc('Title')
   private description: string = this.$i18n.tc('Description')
+  private difficultyPercent = 50
+  private dialogDelete = false
 
   async created() {
     this.id = this.$route.params.id
@@ -119,9 +143,6 @@ export default class QuizEdit extends Vue {
       }
     }
 
-    console.log(this.quiz)
-    console.log(this.lesson)
-
     this.initQuiz()
 
   }
@@ -133,6 +154,9 @@ export default class QuizEdit extends Vue {
       this.questions = []
     }
 
+    if (this.quiz?.difficultyPercent) {
+      this.difficultyPercent = this.quiz?.difficultyPercent as number
+    }
 
     if (this.quiz?.description) {
       this.description = this.quiz?.description as string
@@ -145,6 +169,32 @@ export default class QuizEdit extends Vue {
     this.$forceUpdate();
   }
 
+  isAnswerCorrect(question:Question, answer: number) {
+    return question.correctAnswers.includes(answer)
+  }
+
+  async clickDelete() {
+    this.dialogDelete = true
+  }
+
+  async deleteQuiz() {
+    this.dialogDelete = false
+
+    if (this.quiz?.type == QuizType.INITIAL) {
+      (this.lesson as any).initialQuiz = null
+    } else {
+      (this.lesson as any).finalQuiz = null
+    }
+    await saveLesson(this.lesson as Lesson)
+    await deleteQuiz(this.quiz as Quiz)
+
+    this.$router.push({
+      name: 'LessonEdit',
+      params: {action: "edit", courseId: (this.lesson as Lesson).courseId, id: this.lessonId as string}
+    })
+
+  }
+
   updateQuizObject() {
     this.quiz = {
       type: this.type,
@@ -152,6 +202,7 @@ export default class QuizEdit extends Vue {
       title: this.title,
       lessonId: this.lessonId,
       description: this.description,
+      difficultyPercent: this.difficultyPercent
     } as Quiz
     this.quiz.questions = this.questions as Question[]
 
@@ -159,7 +210,6 @@ export default class QuizEdit extends Vue {
   }
 
   createQuestion(createdQuestion: Question) {
-    console.log("----", createdQuestion)
     this.questions = this.questions as Question[]
     this.questions.push(createdQuestion)
     this.$forceUpdate();
@@ -169,7 +219,6 @@ export default class QuizEdit extends Vue {
     this.questions = this.questions as Question[]
     const index = createdQuestion.questionNumber
     this.questions[index] = createdQuestion
-    console.log(index, this.questions, createdQuestion)
     this.$forceUpdate();
 
   }
@@ -188,12 +237,18 @@ export default class QuizEdit extends Vue {
       this.lesson.finalQuiz = this.quiz as Quiz
     }
     await saveLesson(this.lesson as Lesson)
-    this.$router.push({name: 'LessonEdit', params: {id: this.lessonId as string}})
+    this.$router.push({
+      name: 'LessonEdit',
+      params: {action: "edit", courseId: (this.lesson as Lesson).courseId, id: this.lessonId as string}
+    })
 
   }
 
   async cancel() {
-    this.$router.push({name: 'LessonEdit', params: {id: this.lessonId as string}})
+    this.$router.push({
+      name: 'LessonEdit',
+      params: {action: "edit", courseId: (this.lesson as Lesson).courseId, id: this.lessonId as string}
+    })
   }
 }
 
@@ -222,8 +277,21 @@ export default class QuizEdit extends Vue {
   margin-left: 20px;
 }
 
-.question-content{
-  margin:10px
+.correct {
+  margin-left: 10px;
+}
+
+.answer-text {
+  margin-left: 10px;
+}
+
+.question-anwers {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.question-content {
+  margin: 10px
 }
 
 </style>

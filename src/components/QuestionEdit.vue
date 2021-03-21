@@ -47,10 +47,9 @@
           <div class="subtitle-1"> {{ $t('Answers') }}
             <v-btn
                 v-if="!addingQuestionNewAnswer"
-                color="secondary"
                 text
                 @click="addNewAnswer"
-            >{{ $t('add') }}
+            >{{ $t('Create answer') }}
             </v-btn>
           </div>
           <div v-if="addingQuestionNewAnswer">
@@ -68,18 +67,20 @@
           </div>
 
 
-          <span class="input" v-for="(answer, index) in editingQuestion.answerOptions" :key="answer">
+          <div class="input" v-for="(answer, index) in editingQuestion.answerOptions" :key="answer">
               <v-checkbox
                   v-model="editingQuestion.correctAnswers"
                   :label="answer"
                   :value="index"
               ></v-checkbox>
+            <span v-if="isCorrectAnwer(index)" class="body-1">{{$t('(correct)')}}</span>
               <v-btn
                   color="primary"
                   text
                   @click="removeEditingAnswer(answer, index)"
               >{{ $t('remove answer') }}</v-btn>
-            </span>
+            </div>
+
 
         </v-card-text>
 
@@ -100,7 +101,7 @@
               text
               @click="createQuestion"
           >
-            {{ $t('Create') }}
+            {{ $t('Save') }}
           </v-btn>
           <v-btn
               v-if="action==='edit'"
@@ -108,7 +109,7 @@
               text
               @click="editQuestion"
           >
-            {{ $t('Create') }}
+            {{ $t('Save') }}
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -167,6 +168,10 @@ export default class QuestionEdit extends Vue {
   }
   addNewAnswer() {
     this.addingQuestionNewAnswer = true
+  }
+
+  isCorrectAnwer(index:number){
+    return this.editingQuestion.correctAnswers.includes(index)
   }
 
   saveNewAnswer() {

@@ -21,6 +21,15 @@ firebase.auth().onAuthStateChanged(user => {
     store.dispatch("setUser", user);
 });
 
+export const getCurrentUserFirebase = () => {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+            unsubscribe();
+            resolve(user);
+        }, reject);
+    })
+};
+
 // utils
 const db = firebase.firestore()
 const auth = firebase.auth()

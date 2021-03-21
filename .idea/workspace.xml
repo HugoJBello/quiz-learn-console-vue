@@ -20,19 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d5ff4e5-4e03-46ac-97bf-110324ebf1bb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.firebase/hosting.ZGlzdA.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.ZGlzdA.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.firebaserc" beforeDir="false" afterPath="$PROJECT_DIR$/.firebaserc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/DeleteDialog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/css/chunk-vendors.6ed11a11.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/js/about.16dad9a5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/js/about.16dad9a5.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/js/app.2756fb3c.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/js/app.2756fb3c.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/js/chunk-vendors.a4812c37.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/js/chunk-vendors.a4812c37.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CourseCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CourseCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/QuestionEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuestionEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/dbService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/dbService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/CoursesMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CoursesMenu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/LessonEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LessonEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/PartEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/PartEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/QuizEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/QuizEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +60,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -72,8 +73,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/views" />
       <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/views" />
       <recent name="$PROJECT_DIR$/src/store/mutations" />
       <recent name="$PROJECT_DIR$/src/store/actions" />
       <recent name="$PROJECT_DIR$/src/services" />
@@ -106,7 +107,8 @@
       <workItem from="1615639785100" duration="7965000" />
       <workItem from="1615661940172" duration="1199000" />
       <workItem from="1615739306312" duration="13043000" />
-      <workItem from="1615757475132" duration="18590000" />
+      <workItem from="1615757475132" duration="18620000" />
+      <workItem from="1616336856424" duration="13715000" />
     </task>
     <servers />
   </component>
@@ -130,7 +132,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/views/LessonEdit.vue</url>
-          <line>176</line>
+          <line>196</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

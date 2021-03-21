@@ -10,7 +10,7 @@ import 'vuetify/dist/vuetify.min.css';
 Vue.use(VueI18n)
 Vue.use(Vue2Editor as any)
 Vue.config.productionTip = false
-
+Vue.config.silent = true;
 
 const i18n = new VueI18n({
   locale: 'es', // set locale

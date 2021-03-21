@@ -5,7 +5,13 @@
         large
         class="save"
         :loading="!lesson"
-        @click="save">{{ $t('Save') }}
+        @click="clickSave">{{ $t('Save') }}
+    </v-btn>
+    <v-btn
+        largedificultyPercent
+        class="save"
+        :loading="!lesson"
+        @click="clickDelete">{{ $t('Delete') }}
     </v-btn>
     <v-card
         elevation="2"
@@ -17,11 +23,23 @@
       <v-card-title>{{ $t('General') }}</v-card-title>
 
       <div class="input">
-        <v-text-field
-            :label="$t('Title')"
-            outlined
-            v-model="title"
-        ></v-text-field>
+        <v-layout row wrap>
+          <v-flex xs8>
+            <v-text-field
+                :label="$t('Title')"
+                outlined
+                v-model="title"
+            ></v-text-field>
+          </v-flex>
+          <v-flex xs4>
+            <v-slider
+                class="slider"
+                v-model="difficultyPercent"
+                :label="$t('Difficulty') + ' ' + difficultyPercent"
+                thumb-label="always"
+            ></v-slider>
+          </v-flex>
+        </v-layout>
       </div>
 
       <div class="input">
@@ -42,6 +60,8 @@
 
     </v-card>
 
+    <DeleteDialog v-model="dialogDelete" @deleteAction="deleteLesson"></DeleteDialog>
+
 
     <v-card
         elevation="2"
@@ -59,8 +79,8 @@
           </v-btn>
         </div>
 
-        <div v-for="part in lesson.parts" :key="part.partNumber">
-          <span class="body-2">{{part.title}}</span>
+        <div v-for="part in parts" :key="part.partNumber">
+          <span class="body-2">{{ part.title }}</span>
           <v-btn
               class="quiz-button"
               large
@@ -83,7 +103,7 @@
 
       <v-card-text>
         <div v-if="initialQuiz && initialQuiz.id">
-          <span class="body-2">{{initialQuiz.title}}</span>
+          <span class="body-2">{{ initialQuiz.title }}</span>
           <v-btn
               class="quiz-button"
               large
@@ -111,7 +131,7 @@
       <v-card-title>{{ $t('Final Quiz') }}</v-card-title>
       <v-card-text>
         <div v-if="finalQuiz && finalQuiz.id">
-          <span class="body-2">{{finalQuiz.title}}</span>
+          <span class="body-2">{{ finalQuiz.title }}</span>
           <v-btn
               class="quiz-button"
               large
@@ -172,14 +192,15 @@
 <script lang="ts">
 /* eslint-disable */
 import {Component, Vue, Watch} from 'vue-property-decorator';
-import {getLesson, saveLesson} from "@/services/dbService";
+import {deleteLesson, getLesson, saveLesson} from "@/services/dbService";
 import {Lesson, Part} from "@/models/Lessons";
 import {Quiz, QuizType} from "@/models/Quiz";
 import {VueEditor} from "vue2-editor";
 import {uploadFile} from "@/services/filesService";
 import {v4 as uuidv4} from "uuid";
+import DeleteDialog from "@/components/DeleteDialog.vue";
 
-@Component({extends: VueEditor})
+@Component({extends: VueEditor, components: {DeleteDialog}})
 export default class LessonEdit extends Vue {
 
   private lesson: Lesson | null = {} as Lesson
@@ -188,16 +209,19 @@ export default class LessonEdit extends Vue {
   private id: string | null = ""
   private courseId: string | null = ""
   private files: File[] = []
+  private difficultyPercent = 50
 
   private title: string = this.$i18n.tc('Title')
   private subtitle: string = this.$i18n.tc('Subtitle')
   private description: string = this.$i18n.tc('Description')
   private imageUrl: string = ""
   private action: string = "edit"
+  private parts: Part[] = []
+  private dialogDelete = false
 
   async created() {
     this.id = this.$route.params.id
-    if (this.id=="None" || this.id ==="") this.id=uuidv4()
+    if (this.id == "None" || this.id === "") this.id = uuidv4()
     this.courseId = this.$route.params.courseId
     this.action = this.$route.params.action
     if (this.action === "edit") {
@@ -207,11 +231,16 @@ export default class LessonEdit extends Vue {
   }
 
   public initLesson() {
-    if (!this.lesson || this.action==="create") this.lesson = {id:uuidv4(), courseId: this.courseId} as Lesson
+    if (!this.lesson || this.action === "create") this.lesson = {id: uuidv4(), courseId: this.courseId} as Lesson
 
     if (this.lesson?.description) {
       this.description = this.lesson?.description as string
     }
+
+    if (this.lesson?.difficultyPercent) {
+      this.difficultyPercent = this.lesson?.difficultyPercent as number
+    }
+
 
     if (this.lesson?.title) {
       this.title = this.lesson?.title as string
@@ -222,6 +251,10 @@ export default class LessonEdit extends Vue {
 
     if (this.lesson?.subtitle) {
       this.subtitle = this.lesson?.subtitle as string
+    }
+
+    if (this.lesson?.parts) {
+      this.parts = this.lesson?.parts as Part[]
     }
 
     if (this.lesson?.initialQuiz) {
@@ -250,10 +283,11 @@ export default class LessonEdit extends Vue {
       title: this.title,
       subtitle: this.subtitle,
       description: this.description,
-      parts: [] as Part[],
+      parts: this.parts,
       initialQuiz: this.initialQuiz,
       finalQuiz: this.finalQuiz,
-      imageUrl:this.imageUrl
+      imageUrl: this.imageUrl,
+      difficultyPercent: this.difficultyPercent
     } as Lesson
 
     if (this.courseId && this.courseId !== "") {
@@ -261,37 +295,83 @@ export default class LessonEdit extends Vue {
     }
   }
 
+  async clickSave(){
+    await this.save()
+    await this.$router.push({
+      name: 'LessonConsole',
+      params: {
+        courseId: this.courseId as string
+      }
+    })
+  }
   async save() {
     this.updateLessonObject()
     await saveLesson(this.lesson as Lesson)
   }
 
-  async createInitialQuiz(){
-    await this.save()
-    await this.$router.push({ name: 'QuizEdit', params: { id: "None", lessonId:this.id || "",quizType:QuizType.INITIAL } })
-  }
-  async editInitialQuiz(){
-    await this.save()
-    await this.$router.push({ name: 'QuizEdit', params: { id: (this.initialQuiz as any).id, lessonId:this.id || "",quizType:QuizType.INITIAL } })
-  }
-  async createFinalQuiz(){
-    await this.save()
-    await this.$router.push({ name: 'QuizEdit', params: { id: "None", lessonId:this.id || "",quizType:QuizType.FINAL } })
-  }
-  async editFinalQuiz(){
-    await this.save()
-    await this.$router.push({ name: 'QuizEdit', params: { id: (this.finalQuiz as any).id, lessonId:this.id || "",quizType:QuizType.FINAL } })
-  }
-  async createPart(){
-    await this.save()
-    await this.$router.push({ name: 'PartEdit', params: { id: "None", lessonId:this.id || "",partNumber:"0",action:"create" } })
-  }
-  async editPart(part:Part){
-    await this.save()
-    await this.$router.push({ name: 'PartEdit', params: { id: part.id, lessonId:this.id || "",partNumber:""+ part.partNumber,action:"edit" } })
+  async clickDelete() {
+    this.dialogDelete = true
   }
 
-  async upload(){
+  async deleteLesson() {
+    this.dialogDelete = false
+    await deleteLesson(this.lesson as Lesson)
+    await this.$router.push({name: 'LessonConsole', params: {courseId: this.lesson?.courseId || ""}})
+
+  }
+
+  async createInitialQuiz() {
+    await this.save()
+    await this.$router.push({
+      name: 'QuizEdit',
+      params: {id: "None", lessonId: this.id || "", quizType: QuizType.INITIAL}
+    })
+  }
+
+  async editInitialQuiz() {
+    await this.save()
+    await this.$router.push({
+      name: 'QuizEdit',
+      params: {id: (this.initialQuiz as any).id, lessonId: this.id || "", quizType: QuizType.INITIAL}
+    })
+  }
+
+  async createFinalQuiz() {
+    await this.save()
+    await this.$router.push({name: 'QuizEdit', params: {id: "None", lessonId: this.id || "", quizType: QuizType.FINAL}})
+  }
+
+  async editFinalQuiz() {
+    await this.save()
+    await this.$router.push({
+      name: 'QuizEdit',
+      params: {id: (this.finalQuiz as any).id, lessonId: this.id || "", quizType: QuizType.FINAL}
+    })
+  }
+
+  async createPart() {
+    await this.save()
+    await this.$router.push({
+      name: 'PartEdit',
+      params: {
+        courseId: this.courseId as string,
+        id: "None",
+        lessonId: this.id || "",
+        partNumber: "0",
+        action: "create"
+      }
+    })
+  }
+
+  async editPart(part: Part) {
+    await this.save()
+    await this.$router.push({
+      name: 'PartEdit',
+      params: {id: part.id, lessonId: this.id || "", partNumber: "" + part.partNumber, action: "edit"}
+    })
+  }
+
+  async upload() {
     const image = await uploadFile(this.files[0])
     this.imageUrl = image
     this.$forceUpdate()
@@ -320,18 +400,20 @@ export default class LessonEdit extends Vue {
   margin: 10px;
 }
 
-#editor1 {
-  height: 200px;
+.slider {
+  margin-left: 20px;
+  margin-top: 10px;
 }
 
 #editor2 {
   height: 350px
 }
 
-.save{
+.save {
   margin-left: 10px;
 }
-.quiz-button{
+
+.quiz-button {
   margin-left: 10px;
 }
 

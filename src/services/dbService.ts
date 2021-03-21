@@ -24,14 +24,20 @@ export const saveQuiz = async (quiz: Quiz) => {
     return quizzesCollection.doc(quiz.id).set(quiz)
 }
 
+export const deleteQuiz = async (quiz: Quiz) => {
+    return quizzesCollection.doc(quiz.id).delete()
+}
+
 export const savePart = async (part: Part) => {
     if (!part.id || part.id === "None") {
         part.id = uuidv4()
     }
-    console.log(part)
     return partsCollection.doc(part.id).set(part)
 }
 
+export const deletePart = async (part: Part) => {
+    return partsCollection.doc(part.id).delete()
+}
 
 export const getLessonsAvailable = async (limit: number, skip: number): Promise<Lesson[]> => {
     //const result  = await quizzesCollection.limit(10).where("public", "==", true).orderBy("date", "desc").get()
@@ -64,6 +70,9 @@ export const saveLesson = async (lesson: Lesson) => {
     return lessonsCollection.doc(lesson.id).set(lesson)
 }
 
+export const deleteLesson = async (lesson: Lesson) => {
+    return lessonsCollection.doc(lesson.id).delete()
+}
 
 export const getCoursesAvailable = async (limit: number, skip: number): Promise<Course[]> => {
     const result = await coursesCollection.limit(limit).get()
@@ -81,6 +90,10 @@ export const saveCourse = async (course: Course) => {
         course.id = uuidv4()
     }
     return coursesCollection.doc(course.id).set(course)
+}
+
+export const deleteCourse = async (course: Course) => {
+    return coursesCollection.doc(course.id).delete()
 }
 
 export const getLesson = async (id: string): Promise<Lesson| null > => {

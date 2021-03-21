@@ -8,7 +8,6 @@
         @click="cancel">{{ $t('Cancel') }}
     </v-btn>
 
-
     <v-btn
         large
         class="save"
@@ -135,17 +134,17 @@ import {uploadFile} from "@/services/filesService";
 @Component({extends: VueEditor})
 export default class PartEdit extends Vue {
 
-  private part: Part | null
-  private id: string | null
+  private part: Part
+  private id: string
   private action: string | null
   private lessonId: string | null
-  private lesson: Lesson | null
+  private lesson: Lesson
   private title: string = this.$i18n.tc('Part Title')
   private subtitle: string = this.$i18n.tc('Part subtitle')
   private partNumber: number = 0
   private partNumberInput: number = 1
   private files: File[] = []
-  private imageUrl: string
+  private imageUrl: string = ""
 
   private content: string = this.$i18n.tc('Content')
 
@@ -157,7 +156,7 @@ export default class PartEdit extends Vue {
     this.partNumberInput = this.partNumber +1
     if (this.id && this.id !== "None") {
       try {
-        this.part = await getPart(this.id)
+        this.part = await getPart(this.id) as Part
       } catch (e) {
         console.log(e)
       }
@@ -167,13 +166,11 @@ export default class PartEdit extends Vue {
 
     if (this.lessonId) {
       try {
-        this.lesson = await getLesson(this.lessonId)
+        this.lesson = await getLesson(this.lessonId) as Lesson
       } catch (e) {
         console.log(e)
       }
     }
-
-    console.log(this.part)
     console.log(this.lesson)
 
     this.initPart()
@@ -185,7 +182,7 @@ export default class PartEdit extends Vue {
   public initPart() {
     if (!this.part) {
       this.part = {} as Part
-      this.part.id = this.id || "None"
+      this.part.id = this.id || uuidv4()
       this.part.partNumber = this.partNumber
       this.part.lessonId = this.lessonId || "None"
     }
@@ -230,26 +227,32 @@ export default class PartEdit extends Vue {
 
   async upload(){
     const image = await uploadFile(this.files[0])
-    console.log(image)
     this.imageUrl = image
     this.$forceUpdate()
   }
 
   async save() {
     this.updatePartObject()
+    this.updatePartsArray()
     await savePart(this.part as Part)
-    if (this.lesson && this.action === "edit") {
-      this.lesson.parts[this.partNumberInput-1] = this.part as Part
-    } else if (this.lesson && this.action === "create") {
-      this.lesson.parts.push(this.part as Part)
-    }
     await saveLesson(this.lesson as Lesson)
-    this.$router.push({name: 'LessonEdit', params: {id: this.lessonId as string}})
+    this.$router.push({name: 'LessonEdit', params: {action:"edit", courseId: (this.lesson as Lesson).courseId, id: this.lessonId as string}})
+
+  }
+
+  updatePartsArray() {
+    if (!this.lesson.parts) this.lesson.parts = []
+    if (this.action === "edit") {
+      this.lesson.parts = this.lesson.parts.filter((part)=>part.id !== this.part.id)
+    }
+    this.lesson.parts.push(this.part as Part)
+    console.log(this.lesson)
+    console.log(this.lesson.parts)
 
   }
 
   async cancel() {
-    this.$router.push({name: 'LessonEdit', params: {id: this.lessonId as string}})
+    this.$router.push({name: 'LessonEdit', params: {action:"edit", courseId: (this.lesson as Lesson).courseId, id: this.lessonId as string}})
   }
 }
 

@@ -4,12 +4,15 @@
       <v-btn
           large
           class="create"
-          :loading="!courses"
+          :loading="loading"
           @click="create">{{ $t('Create course') }}
       </v-btn>
 
-    <CourseCard @editCourse="editCourse" :course="item" v-for="item in courses" :key="item.id">
-        </CourseCard>
+    <CourseCard @editCourse="editCourse" @deleteCourse="deleteCourse" :course="item" v-for="item in courses" :key="item.id">
+
+    </CourseCard>
+
+      <DeleteDialog v-model="dialogDelete" @deleteAction="deleteCourseConfirm"></DeleteDialog>
     </v-container>
 
     <v-dialog
@@ -106,20 +109,23 @@ import {Component, Vue} from 'vue-property-decorator';
 import CourseCard from "@/components/CourseCard.vue";
 import {Course} from "@/models/Course";
 import {v4 as uuidv4} from "uuid";
-import {saveCourse} from "@/services/dbService";
+import {saveCourse, deleteCourse} from "@/services/dbService";
 import {uploadFile} from "@/services/filesService";
+import DeleteDialog from "@/components/DeleteDialog.vue";
 
 @Component({
-  components: {CourseCard},
+  components: {CourseCard, DeleteDialog},
 })
 export default class CoursesMenu extends Vue {
   public dialog = false
+  public loading = true
   public editingCourse: Course = {} as Course
   private imageUrl: string = ""
+  private dialogDelete = false
+
   private files: File[] = []
 
   get courses() {
-    console.log(this.$store.state.availableCoursesForUser)
     return this.$store.state.availableCoursesForUser
   }
 
@@ -137,9 +143,21 @@ export default class CoursesMenu extends Vue {
     this.editingCourse=course
     this.dialog = true
   }
+  deleteCourse(course:Course){
+    this.editingCourse=course
+    this.dialogDelete = true
+  }
+  async deleteCourseConfirm(){
+    this.loading = true
+    await deleteCourse(this.editingCourse)
+    console.log("---", this.editingCourse)
+    await this.$store.dispatch('setAvailableCoursesForUser')
+    this.loading = false
+  }
+
   async created() {
     await this.$store.dispatch('setAvailableCoursesForUser')
-    console.log("--------__", this.courses)
+    this.loading = false
   }
 
   async upload(){

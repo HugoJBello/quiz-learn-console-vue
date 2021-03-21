@@ -23,14 +23,21 @@
           color="teal accent-4"
           v-on:click="select(course)"
       >
-        {{$t('View lessons in course')}}
+        {{$t('View lessons')}}
       </v-btn>
       <v-btn
           text
           color="teal accent-4"
           v-on:click="edit(course)"
       >
-        {{$t('Edit course')}}
+        {{$t('Edit')}}
+      </v-btn>
+      <v-btn
+          text
+          color="teal accent-4"
+          v-on:click="deleteCourse(course)"
+      >
+        {{$t('Delete')}}
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -56,6 +63,9 @@ export default class QuizCard extends Vue {
   }
   public edit = (course: Course) => {
     this.$emit("editCourse", course)
+  }
+  public deleteCourse = (course: Course) => {
+    this.$emit("deleteCourse", course)
   }
 
 }
