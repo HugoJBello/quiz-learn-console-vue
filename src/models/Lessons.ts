@@ -16,13 +16,13 @@ export interface Lesson {
     quizzes: Quiz[],
     public: boolean,
     courseId: string,
-    imageUrl:string,
+    imageUrl: string,
     date: Date
 }
 
 export interface Part {
-    id:string,
-    lessonId:string,
+    id: string,
+    lessonId: string,
     title: string,
     subtitle: string,
     content: string,

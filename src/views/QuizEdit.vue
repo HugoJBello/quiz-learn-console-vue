@@ -58,11 +58,22 @@
 
     </v-card>
     <DeleteDialog v-model="dialogDelete" @deleteAction="deleteQuiz"></DeleteDialog>
+    <QuestionEditDialog :action="questionAction"
+                        :existingQuestion="editingQuestion"
+                        :index="questionIndex"
+                        v-model="questionDialog"
+                        @editQuestion="editQuestion"
+                        @addQuestion="createQuestion"/>
 
 
     <div>
-      <QuestionEdit :index="0" action="create" @addQuestion="createQuestion"
-                    @editQuestion="createQuestion"></QuestionEdit>
+      <v-btn
+          color="primary"
+          text
+          @click="clickQuestionCreate"
+      >
+        {{ $t('Create question') }}
+      </v-btn>
 
       <v-card v-for="(question, index) in questions" :key="question.questionText"
               shaped
@@ -70,8 +81,13 @@
               class="general"
       >
         <v-card-title>{{ $t("Question") }} {{ index + 1 }}</v-card-title>
-        <QuestionEdit :index="index" action="edit" :existingQuestion="question"
-                      @editQuestion="editQuestion"></QuestionEdit>
+        <v-btn
+            color="primary"
+            text
+            @click="editQuestionClick(question,index)"
+        >
+          {{ $t('Edit question') }}
+        </v-btn>
 
         <v-card-text class="question-content">
           <div class="question-text">
@@ -80,7 +96,7 @@
 
           <div class="question-anwers" v-for="(answer, index) in question.answerOptions" :key="answer">
             <span class="body-2">({{ index + 1 }}) </span> <span class="body-2 answer-text">{{ answer }}</span>
-            <span  class="correct" v-if="isAnswerCorrect(question,index)">{{$t("(correct)")}}</span>
+            <span class="correct" v-if="isAnswerCorrect(question,index)">{{ $t("(correct)") }}</span>
           </div>
         </v-card-text>
       </v-card>
@@ -99,10 +115,10 @@ import {deleteQuiz, getLesson, getQuiz, saveLesson, saveQuiz} from "@/services/d
 import {Question, Quiz, QuizType} from "@/models/Quiz";
 import {Lesson} from "@/models/Lessons";
 import {v4 as uuidv4} from "uuid";
-import QuestionEdit from "@/components/QuestionEdit.vue";
+import QuestionEditDialog from "@/components/QuestionEditDialog.vue";
 import DeleteDialog from "@/components/DeleteDialog.vue";
 
-@Component({extends: QuestionEdit, components:{DeleteDialog}})
+@Component({components: {DeleteDialog, QuestionEditDialog}})
 export default class QuizEdit extends Vue {
 
   private quiz: Quiz | null
@@ -115,6 +131,10 @@ export default class QuizEdit extends Vue {
   private description: string = this.$i18n.tc('Description')
   private difficultyPercent = 50
   private dialogDelete = false
+  private questionDialog = false
+  private questionAction = "create"
+  private questionIndex = 0
+  private editingQuestion: Question | null
 
   async created() {
     this.id = this.$route.params.id
@@ -169,12 +189,32 @@ export default class QuizEdit extends Vue {
     this.$forceUpdate();
   }
 
-  isAnswerCorrect(question:Question, answer: number) {
+  isAnswerCorrect(question: Question, answer: number) {
     return question.correctAnswers.includes(answer)
   }
 
   async clickDelete() {
     this.dialogDelete = true
+  }
+
+  clickQuestionCreate(){
+    console.log("*******************")
+    this.questionDialog = true;
+    this.questionAction='create';
+    this.questionIndex=0;
+    this.editingQuestion=null
+    console.log(this.editingQuestion)
+    this.$forceUpdate()
+  }
+
+  editQuestionClick(question: Question,index:number){
+    console.log("*******************")
+    this.questionDialog = true;
+    this.questionAction='edit';
+    this.questionIndex=index;
+    this.editingQuestion=question
+    console.log(this.editingQuestion)
+    this.$forceUpdate()
   }
 
   async deleteQuiz() {
