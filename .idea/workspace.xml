@@ -22,9 +22,8 @@
     <list default="true" id="1d5ff4e5-4e03-46ac-97bf-110324ebf1bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.firebase/hosting.ZGlzdA.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.ZGlzdA.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/QuestionEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuestionEditDialog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Lessons.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Lessons.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/QuizEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/QuizEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/QuestionEditDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuestionEditDialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Quiz.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Quiz.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +99,12 @@
       <workItem from="1615739306312" duration="13043000" />
       <workItem from="1615757475132" duration="18620000" />
       <workItem from="1616336856424" duration="14913000" />
-      <workItem from="1616601999543" duration="6290000" />
+      <workItem from="1616601999543" duration="7108000" />
+      <workItem from="1616755685064" duration="599000" />
+      <workItem from="1616960947998" duration="9000" />
+      <workItem from="1619364595893" duration="2492000" />
+      <workItem from="1619440055791" duration="1115000" />
+      <workItem from="1620228915096" duration="5602000" />
     </task>
     <servers />
   </component>

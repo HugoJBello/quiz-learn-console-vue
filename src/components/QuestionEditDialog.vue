@@ -24,6 +24,7 @@
               v-model="editingQuestion.explanation"
           ></v-text-field>
         </div>
+
         <v-divider></v-divider>
         <br/>
         <div class="subtitle-1"> {{ $t('Answers') }}
@@ -34,17 +35,51 @@
           >{{ $t('Create answer') }}
           </v-btn>
         </div>
-        <div v-if="addingQuestionNewAnswer">
+
+        <div class="newAns" v-if="addingQuestionNewAnswer">
           <v-text-field
               :label="$t('New answer')"
               outlined
               v-model="newAnswer"
           ></v-text-field>
+          <div>
+
+            <v-layout row wrap>
+              <v-flex xs8>
+                <v-file-input
+                    v-model="files"
+                    placeholder="Upload your documents"
+                    label="File input"
+                    multiple
+                    prepend-icon="mdi-paperclip"
+                />
+              </v-flex>
+              <v-flex xs4>
+                <v-btn
+                    v-if="files && files.length>0"
+                    large
+                    @click="upload">{{ $t('Upload') }}
+                </v-btn>
+              </v-flex>
+            </v-layout>
+            <v-img
+                v-if="newAnswerImageUrl"
+                lazy-src="https://picsum.photos/id/11/10/6"
+                max-height="50"
+                :src="newAnswerImageUrl"
+            ></v-img>
+          </div>
           <v-btn
               color="primary"
               text
               @click="saveNewAnswer"
           >{{ $t('add') }}
+          </v-btn>
+          <v-btn
+              color="primary"
+              text
+              @click="cancelNewAnswer"
+          >{{ $t('cancel') }}
           </v-btn>
         </div>
 
@@ -55,6 +90,13 @@
               :label="answer"
               :value="index"
           ></v-checkbox>
+          <v-img
+              v-if="editingQuestion.answerImages && editingQuestion.answerImages[answer]"
+              lazy-src="https://picsum.photos/id/11/10/6"
+              max-height="50"
+              max-width="50"
+              :src="editingQuestion.answerImages[answer]"
+          ></v-img>
           <span v-if="isCorrectAnwer(index)" class="body-1">{{ $t('(correct)') }}</span>
           <v-btn
               color="primary"
@@ -106,6 +148,7 @@ import QuizCard from "@/components/CourseCard.vue";
 import {Lesson} from "@/models/Lessons";
 import moment from "moment";
 import {Question} from "@/models/Quiz";
+import {uploadFile} from "@/services/filesService";
 
 export default {
   name: "DeleteDialog",
@@ -119,13 +162,29 @@ export default {
     return {
       editingQuestion: this.initQuestion(),
       newAnswer: "",
+      newAnswerImageUrl: "",
+      files: [],
       addingQuestionNewAnswer: false
     }
   },
   methods: {
     initQuestion() {
-      if (this.existingQuestion) return this.existingQuestion
-      return {questionText: "", questionNumber: this.index, explanation: "", answerOptions: [], correctAnswers: []}
+      const existing = this.existingQuestion
+      if (existing) {
+        if (!existing.answerImages || Array.isArray(existing.answerImages)) {
+          existing.answerImages = {}
+        }
+        console.log(existing)
+        return existing
+      }
+      return {
+        questionText: "",
+        questionNumber: this.index,
+        explanation: "",
+        answerOptions: [],
+        answerImages: {},
+        correctAnswers: []
+      }
     },
     createQuestion() {
       this.editingQuestion.questionNumber = this.index
@@ -133,6 +192,7 @@ export default {
       this.$emit("addQuestion", this.editingQuestion)
       this.questionDialog = false
       this.newAnswer = ""
+      this.newAnswerImageUrl = ""
     },
     editQuestion() {
       this.editingQuestion.questionNumber = this.index
@@ -140,6 +200,8 @@ export default {
       this.$emit("editQuestion", this.editingQuestion)
       this.questionDialog = false
       this.newAnswer = ""
+      this.newAnswerImageUrl = ""
+      console.log(this.editingQuestion)
     },
     addNewAnswer() {
       this.addingQuestionNewAnswer = true
@@ -151,20 +213,33 @@ export default {
     saveNewAnswer() {
       this.addingQuestionNewAnswer = false
       this.editingQuestion.answerOptions.push(this.newAnswer)
+      if (!this.editingQuestion.answerImages) this.editingQuestion.answerImages = {}
+      this.editingQuestion.answerImages[this.newAnswer] = this.newAnswerImageUrl
       this.newAnswer = ""
+      this.newAnswerImageUrl = ""
+      console.log(this.editingQuestion)
+    },
+    cancelNewAnswer(){
+      this.addingQuestionNewAnswer = false
+      this.newAnswer = ""
+      this.newAnswerImageUrl = ""
     },
     removeEditingAnswer(answer, index) {
       console.log(this.editingQuestion.answerOptions)
       this.editingQuestion.answerOptions = this.editingQuestion.answerOptions.filter((ans) => ans !== answer)
+      this.editingQuestion.answerImages[answer] = null
       this.editingQuestion.correctAnswers = this.editingQuestion.correctAnswers.filter((ans) => ans !== index)
       console.log(this.editingQuestion.answerOptions)
 
       this.$forceUpdate();
-      console.log(answer, index)
+    },
+    async upload() {
+      const image = await uploadFile(this.files[0])
+      this.newAnswerImageUrl = image
+      this.$forceUpdate()
     }
   },
   created() {
-    console.log("----x------", this.existingQuestion)
     if (this.existingQuestion) {
       this.editingQuestion = Object.assign({}, this.existingQuestion)
     } else {
@@ -173,11 +248,11 @@ export default {
   },
   watch: {
     existingQuestion: function (newQuestion, oldQuestion) {
-     if (!newQuestion) {
-       this.editingQuestion = this.initQuestion()
-     } else {
-       this.editingQuestion = newQuestion
-     }
+      if (!newQuestion) {
+        this.editingQuestion = this.initQuestion()
+      } else {
+        this.editingQuestion = newQuestion
+      }
     }
   },
   computed: {
@@ -194,5 +269,11 @@ export default {
 </script>
 
 <style>
-
+.newAns{
+  padding: 10px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: blue;
+}
 </style>
