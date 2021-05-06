@@ -24,11 +24,18 @@
 
       <div class="input">
         <v-layout row wrap>
-          <v-flex xs8>
+          <v-flex xs7>
             <v-text-field
                 :label="$t('Title')"
                 outlined
                 v-model="title"
+            ></v-text-field>
+          </v-flex>
+          <v-flex xs1>
+            <v-text-field
+                :label="$t('Index')"
+                outlined
+                v-model="index"
             ></v-text-field>
           </v-flex>
           <v-flex xs4>
@@ -212,6 +219,7 @@ export default class LessonEdit extends Vue {
   private difficultyPercent = 50
 
   private title: string = this.$i18n.tc('Title')
+  private index: number = 0
   private subtitle: string = this.$i18n.tc('Subtitle')
   private description: string = this.$i18n.tc('Description')
   private imageUrl: string = ""
@@ -241,6 +249,9 @@ export default class LessonEdit extends Vue {
       this.difficultyPercent = this.lesson?.difficultyPercent as number
     }
 
+    if (this.lesson?.index) {
+      this.index = this.lesson?.index as number
+    }
 
     if (this.lesson?.title) {
       this.title = this.lesson?.title as string
@@ -287,6 +298,7 @@ export default class LessonEdit extends Vue {
       initialQuiz: this.initialQuiz,
       finalQuiz: this.finalQuiz,
       imageUrl: this.imageUrl,
+      index: this.index,
       difficultyPercent: this.difficultyPercent
     } as Lesson
 

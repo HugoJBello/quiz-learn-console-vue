@@ -3,7 +3,7 @@
   <v-data-table
       :headers="headers"
       :items="lessons"
-      :items-per-page="5"
+      :items-per-page="15"
       class="elevation-1 table"
   >
     <template v-slot:item.createdAt="{ item }">
@@ -50,6 +50,7 @@ export default class LessonsTable extends Vue {
       value: 'title',
     },
     { text: this.$t('Subtitle'), value: 'subtitle' },
+    { text: this.$t('Index'), value: 'index' },
     { text: this.$t('Created'), value: 'createdAt' },
     { text: 'Id', value: 'id' },
     { text: this.$t('Actions'), value:'actions'},

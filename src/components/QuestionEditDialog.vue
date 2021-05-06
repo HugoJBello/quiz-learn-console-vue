@@ -93,8 +93,8 @@
           <v-img
               v-if="editingQuestion.answerImages && editingQuestion.answerImages[answer]"
               lazy-src="https://picsum.photos/id/11/10/6"
-              max-height="50"
-              max-width="50"
+              max-height="80"
+              max-width="80"
               :src="editingQuestion.answerImages[answer]"
           ></v-img>
           <span v-if="isCorrectAnwer(index)" class="body-1">{{ $t('(correct)') }}</span>

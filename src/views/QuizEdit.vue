@@ -95,7 +95,17 @@
           </div>
 
           <div class="question-anwers" v-for="(answer, index) in question.answerOptions" :key="answer">
-            <span class="body-2">({{ index + 1 }}) </span> <span class="body-2 answer-text">{{ answer }}</span>
+            <span class="text-body-1"><strong>({{ index + 1 }})</strong> </span>
+            <span>
+              <v-img
+                  v-if="question.answerImages && question.answerImages[answer]"
+                  lazy-src="https://picsum.photos/id/11/10/6"
+                  max-height="50"
+                  max-width="50"
+                  :src="question.answerImages[answer]"
+              ></v-img>
+            </span>
+            <span class="body-2 answer-text">{{ answer }}</span>
             <span class="correct" v-if="isAnswerCorrect(question,index)">{{ $t("(correct)") }}</span>
           </div>
         </v-card-text>

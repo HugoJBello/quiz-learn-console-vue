@@ -20,10 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d5ff4e5-4e03-46ac-97bf-110324ebf1bb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.firebase/hosting.ZGlzdA.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.ZGlzdA.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LessonsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LessonsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/QuestionEditDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuestionEditDialog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Quiz.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Quiz.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Lessons.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Lessons.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/LessonConsole.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LessonConsole.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/LessonEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LessonEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/QuizEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/QuizEdit.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +108,7 @@
       <workItem from="1616960947998" duration="9000" />
       <workItem from="1619364595893" duration="2492000" />
       <workItem from="1619440055791" duration="1115000" />
-      <workItem from="1620228915096" duration="5602000" />
+      <workItem from="1620228915096" duration="8274000" />
     </task>
     <servers />
   </component>
@@ -128,7 +132,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/views/LessonEdit.vue</url>
-          <line>196</line>
+          <line>203</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

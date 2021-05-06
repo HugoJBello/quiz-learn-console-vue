@@ -15,14 +15,6 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link to="/lesson_console/None">
-          <v-list-item-action>
-            <v-icon>mdi-notebook-outline</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Lesson Console</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
 
         <v-list-item v-if="!user" link to="/login">
           <v-list-item-action>
