@@ -20,13 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d5ff4e5-4e03-46ac-97bf-110324ebf1bb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.firebase/hosting.ZGlzdA.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.ZGlzdA.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LessonsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LessonsTable.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/QuestionEditDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuestionEditDialog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Lessons.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Lessons.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/LessonConsole.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LessonConsole.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/LessonEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LessonEdit.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/QuizEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/QuizEdit.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -109,6 +106,8 @@
       <workItem from="1619364595893" duration="2492000" />
       <workItem from="1619440055791" duration="1115000" />
       <workItem from="1620228915096" duration="8274000" />
+      <workItem from="1620291097512" duration="1182000" />
+      <workItem from="1620498307190" duration="1161000" />
     </task>
     <servers />
   </component>

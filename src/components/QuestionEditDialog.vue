@@ -151,7 +151,7 @@ import {Question} from "@/models/Quiz";
 import {uploadFile} from "@/services/filesService";
 
 export default {
-  name: "DeleteDialog",
+  name: "QuestionEditDialog",
   props: {
     value: Boolean,
     existingQuestion: Object,

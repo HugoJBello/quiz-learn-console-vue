@@ -207,22 +207,22 @@ export default class QuizEdit extends Vue {
     this.dialogDelete = true
   }
 
-  clickQuestionCreate(){
+  clickQuestionCreate() {
     console.log("*******************")
     this.questionDialog = true;
-    this.questionAction='create';
-    this.questionIndex=0;
-    this.editingQuestion=null
+    this.questionAction = 'create';
+    this.questionIndex = 0;
+    this.editingQuestion = null
     console.log(this.editingQuestion)
     this.$forceUpdate()
   }
 
-  editQuestionClick(question: Question,index:number){
+  editQuestionClick(question: Question, index: number) {
     console.log("*******************")
     this.questionDialog = true;
-    this.questionAction='edit';
-    this.questionIndex=index;
-    this.editingQuestion=question
+    this.questionAction = 'edit';
+    this.questionIndex = index;
+    this.editingQuestion = question
     console.log(this.editingQuestion)
     this.$forceUpdate()
   }
@@ -259,16 +259,18 @@ export default class QuizEdit extends Vue {
     console.log(this.quiz)
   }
 
-  createQuestion(createdQuestion: Question) {
+  async createQuestion(createdQuestion: Question) {
     this.questions = this.questions as Question[]
     this.questions.push(createdQuestion)
+    await this.saveOrUpdateEdition()
     this.$forceUpdate();
   }
 
-  editQuestion(createdQuestion: Question) {
+  async editQuestion(createdQuestion: Question) {
     this.questions = this.questions as Question[]
     const index = createdQuestion.questionNumber
     this.questions[index] = createdQuestion
+    await this.saveOrUpdateEdition()
     this.$forceUpdate();
 
   }
@@ -277,8 +279,7 @@ export default class QuizEdit extends Vue {
     return question.correctAnswers.includes(index)
   }
 
-
-  async save() {
+  async saveOrUpdateEdition() {
     this.updateQuizObject()
     const result = await saveQuiz(this.quiz as Quiz)
     if (this.lesson && this.type == QuizType.INITIAL) {
@@ -287,6 +288,10 @@ export default class QuizEdit extends Vue {
       this.lesson.finalQuiz = this.quiz as Quiz
     }
     await saveLesson(this.lesson as Lesson)
+  }
+
+  async save() {
+    await this.saveOrUpdateEdition()
     this.$router.push({
       name: 'LessonEdit',
       params: {action: "edit", courseId: (this.lesson as Lesson).courseId, id: this.lessonId as string}
